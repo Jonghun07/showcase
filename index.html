@@ -63,6 +63,15 @@ header.solid .navlinks a:hover,header.solid .navlinks .here{color:var(--ink)}
   .navlinks .hide-s{display:none}
 }
 
+/* 헤더 아래 — 이 페이지로 오는 QR (스크롤을 따라다닌다) */
+.hdr-qr{position:fixed;z-index:59;top:80px;right:26px;display:block;padding:7px;width:104px;
+  box-sizing:border-box;line-height:0;border-radius:0;
+  background:rgba(255,255,255,.72);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  border:1px solid rgba(255,255,255,.28);transition:background .3s,border-color .25s}
+header.solid ~ .hdr-qr{background:rgba(255,255,255,.9);border-color:var(--lline)}
+.hdr-qr:hover{border-color:var(--acc2)}
+.hdr-qr img{width:100%;height:auto;display:block}
+@media (max-width:1180px){.hdr-qr{display:none}}
 /* ───────── 히어로 ───────── */
 .hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;
   overflow:hidden;background:#000;color:#fff}
@@ -222,6 +231,9 @@ footer .cr{margin-top:26px;padding-top:24px;border-top:1px solid var(--line);col
     </div>
   </nav>
 </header>
+<a class="hdr-qr" href="https://jonghun07.github.io/showcase/" aria-label="이 페이지 주소 QR 코드">
+  <img src="images/qr.webp" width="472" height="472" decoding="async" alt="">
+</a>
 
 <section class="hero" id="hero">
   <video id="heroVid" muted loop playsinline autoplay preload="metadata"
