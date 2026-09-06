@@ -305,9 +305,21 @@ button:focus-visible,a:focus-visible,summary:focus-visible,[tabindex]:focus-visi
 .closing p{margin:16px auto 0;max-width:640px;font-size:14.5px;opacity:.92;font-weight:500}
 .closing .tag{display:inline-block;margin-bottom:20px;padding:8px 17px;border-radius:999px;
   background:rgba(255,255,255,.2);font-family:var(--serif);font-size:12px;font-weight:700;letter-spacing:.12em}
-footer{margin-top:74px;border-top:1px solid var(--line);padding:32px 0 50px;color:#98a2b3;font-size:12px}
-footer .f{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;justify-content:space-between}
-footer b{color:#58616A;font-weight:700}
+/* 푸터 — showcase 와 동일한 전체 폭 검은 띠 */
+footer{margin-top:clamp(78px,9vw,112px);background:#000;color:#8a8d99;
+  padding:46px 0 58px;font-size:12.5px;letter-spacing:-.01em;
+  font-family:var(--sans)}
+footer .wrap{max-width:1180px}
+footer .f-top{display:flex;flex-wrap:wrap;gap:20px 30px;align-items:flex-start;justify-content:space-between}
+footer .f-brand{display:flex;align-items:center;gap:11px;margin-bottom:9px;
+  color:#fff;font-weight:600;font-size:17px;letter-spacing:-.015em}
+footer .f-logo{width:32px;height:32px;flex:none;display:block;overflow:hidden}
+footer .f-logo svg{width:100%;height:100%;display:block}
+footer .f-tag{color:#8a8d99}
+footer .f-links{display:flex;gap:24px;color:#8a8d99;font-weight:600}
+footer .f-links a{transition:color .2s}
+footer .f-links a:hover{color:#fff}
+footer .f-cr{margin-top:26px;padding-top:24px;border-top:1px solid rgba(255,255,255,.08);color:#6f7480}
 
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
 
@@ -881,14 +893,29 @@ footer b{color:#58616A;font-weight:700}
       </div>
     </div>
 
-    <footer>
-      <div class="f">
-        <span><b>Building Cognition Lab (BCL)</b> · 한국에너지기술연구원(KIER) · 김종훈 책임연구원</span>
-        <span>© KIM Jonghun. All rights reserved.</span>
-      </div>
-    </footer>
   </div>
 </section>
+
+<footer>
+  <div class="wrap">
+    <div class="f-top">
+      <div>
+        <div class="f-brand">
+          <span class="f-logo"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><linearGradient id="lgF" x1="0" y1="0" x2="1.5" y2="1.5" spreadMethod="repeat" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#6366f1"/><stop offset="0.5" stop-color="#22d3ee"/><stop offset="1" stop-color="#6366f1"/><animateTransform attributeName="gradientTransform" type="translate" from="0 0" to="1.5 1.5" dur="4s" repeatCount="indefinite"/></linearGradient></defs><rect width="24" height="24" fill="url(#lgF)"/><g transform="translate(1.2,1.2) scale(0.9)" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="3.2"/><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="18" r="2"/><path d="M9.3 10.4 6.4 7.3M14.7 10.4l2.9-3.1M9.3 13.6l-2.9 3.1M14.7 13.6l2.9 3.1"/></g></svg></span>
+          Building Cognition Lab
+        </div>
+        <div class="f-tag">Empowering Buildings to Perceive, Reason, and Act · KIER · UST, DAEJEON, Republic of Korea</div>
+      </div>
+      <div class="f-links">
+        <a href="https://jonghun07.github.io/bcl/">Main Site</a>
+        <a href="https://jonghun07.github.io/bcl/#research">Research</a>
+        <a href="https://jonghun07.github.io/bcl/#publications">Publications</a>
+        <a href="../index.html">Showcase</a>
+      </div>
+    </div>
+    <div class="f-cr">© 2012 Building Cognition Lab — Jonghun KIM. All rights reserved.</div>
+  </div>
+</footer>
 
 <script>
 const PANELS = [{"c": "c1", "no": "01", "img": "images/tech01.webp", "t2": "부하분리", "t1": "기술", "en": "NILM", "name": "부하분리 기술", "lead": "분전반 메인 채널의 합산 전력 시계열로부터 서브 채널별 부하를 역추정한다. 20개 분전반·282개 서브채널을 에너지용도 6종별 연합학습 서버로 나누어 학습했고, 테스트 구간 가중평균 오차율 13.0%(nMAE)를 기록했다.", "st": [{"t": "연합학습 기반 학습 구조 설계", "items": [["서버는 가중치만 집계·배포 — 분전반 데이터는 외부로 나가지 않음", "연합학습"], ["클라이언트 = 분전반(건물코드 + 통신IP + 분전반ID)", "59 Set"], ["조명·냉난방·전열·환기·급탕·실험실 6종별 서버 분리", "6 서버"], ["KIER 행정동·복합동 20 set, 1분 단위 1년치(’24.03~’25.02)", "데이터"], ["계절 교차분할 학습 70% : 검증 15% : 테스트 15%", "분할"]]}, {"t": "백본 모델과 손실함수", "items": [["1-D CNN 5층 백본 (kernel 5, ch 32, stride 1, padding 2)", "Conv1D"], ["Lazy FC 초기화 + Softplus−log(2) 출력 (비음수·제로중심화)", "출력단"], ["Masked TW-MSE 손실 — 전이임계 δ=25W, 전이 가중계수 κ=4", "손실함수"], ["집계 알고리즘 비교(FedAvg·FedOpt·Ditto) 후 Ditto 채택, λ=0.2", "Ditto"], ["모델 1개 14.2M · 전체 약 924M (서버 85.2M + 클라이언트 837M)", "규모"]]}, {"t": "부하분리 성능평가", "items": [["전체 가중평균 nMAE 13.0% · MAE 140.0W", "13.0%"], ["행정동 13.6% · 복합동 11.7% — 평균부하 크기와 오차율 간 상관 없음", "일반화"], ["최대 33채널 다채널 분전반도 12.1% 수준으로 분리", "33채널"], ["용도별: 전열 11.3% · 조명 13.2% · 냉난방 13.3% · 실험실 15.3%", "용도별"], ["클라이언트가 적은 환기(16.7%)·급탕(36.1%)은 참여 확대 시 개선 전망", "과제"]]}]}, {"c": "c2", "no": "02", "img": "images/tech02.webp", "t2": "미래상태", "t1": "예측", "en": "FORECAST", "name": "미래상태 예측", "lead": "분전반마다 채널 수가 달라 입력 차원이 어긋나는 문제를, 학습 가능한 query로 이질적 입력을 공통 차원으로 압축하는 QAP 모듈로 풀었다. 스파이크 기반 iSpikeformer를 백본으로 삼아 정확도 87.57%와 저전력 추론을 함께 얻었다.", "st": [{"t": "QAP 기반 연합학습 프레임워크", "items": [["FedPer 확장 — 공통 표현 레이어와 개인화 예측 헤드를 분리", "FedPer"], ["Value projection: 서브부하 유효전력을 선형 임베딩으로 차원 통일", "QAP ①"], ["Feature embedding: 서브부하 인덱스를 학습 가능한 벡터로 변환", "QAP ②"], ["Cross attention: 학습 query로 서브부하 정보를 통일 표현으로 압축", "QAP ③"], ["Global context(mean·max) + 시간특성(월·일·시) 결합", "QAP ④⑤"]]}, {"t": "스파이크 기반 백본", "items": [["iSpikeformer 백본 — event 기반 저전력 시계열 특징 추출", "SNN"], ["personal head에서 분전반별 채널 수로 복원, multi-step 예측", "다채널"], ["입력 96 step → 출력 48 step, 15분 리샘플, MSE 손실", "설정"], ["융합동·복합동 23개 분전반, ’24.03~’25.02 1분 단위 데이터", "23 Set"]]}, {"t": "예측 정확도와 추론 에너지", "items": [["가중평균 예측정확도 87.57% — 3차년도 목표 85% 달성", "87.6%"], ["ANN 기반 iTransformer 87.49% 대비 동등 이상", "비교"], ["파라미터 0.1085M vs 0.1063M — 두 모델 규모는 유사", "경량"], ["1회 추론 에너지 약 54% 절감 (조명 용도 5채널 케이스 스터디)", "−54%"], ["출력 헤드까지 스파이크화 시 약 90% 추가 절감 기대", "4차년도"]]}]}, {"c": "c3", "no": "03", "img": "images/tech03.webp", "t2": "중요도", "t1": "판단", "en": "SCORING", "name": "중요도 판단", "lead": "서브부하의 전력 시계열만으로 기저부하·중앙 냉난방·재실 패턴을 가려내 ‘꺼도 되는 스위치’를 정한다. HMM 스케줄 추정과 코사인 유사도를 3단계 제어로직으로 엮었다.", "st": [{"t": "3단계 제어로직", "items": [["1단계 — 기저부하로 분류된 서브부하는 스위치 유지", "기저부하"], ["2단계 — 냉난방 스케줄과의 유사도로 중앙 냉난방 부하 판별", "냉난방"], ["3단계 — 재실 스케줄 유사도로 낭비 부하 판별", "재실"], ["가동시간 10분 이상이면 중요 부하로 보는 보조 판단 추가", "보조로직"]]}, {"t": "HMM 스케줄 추정", "items": [["은닉상태 2개(ON/OFF), covariance_type=diag, n_iter=100", "HMM"], ["초기상태확률·상태전이확률·상태별 평균/공분산을 학습", "파라미터"], ["예측오차율 — 냉난방 6.1%, 재실 1.7%", "성능"]]}, {"t": "유사도 판정과 실증", "items": [["10W 미만 컷오프 후 1시간 단위 이진화(상위 20% 기준)", "전처리"], ["코사인 유사도 0.6 이상이면 중요 부하로 판별", "기준"], ["KIER 대전 본원 실데이터로 제어로직 작동 확인", "실증"], ["기저부하·중앙 냉난방은 유지, 전열·전동스크린은 스케줄 기반 제어", "결과"]]}]}, {"c": "c4", "no": "04", "img": "images/tech04.webp", "t2": "뉴로패널", "t1": "프로토타입", "en": "PROTOTYPE", "name": "뉴로패널 프로토타입", "lead": "알고리즘을 눈으로 보여주는 실물. 분전반 형태 케이싱에 32인치 터치 패널과 Jetson Orin Nano를 넣어, 부하분리 결과부터 ‘끌 스위치’ 권고까지 이어지는 흐름을 시연한다.", "st": [{"t": "프로토타입 HW", "items": [["철제 분전반 케이싱 + 32인치 터치 모니터 + 엣지 AI 보드 구성", "구성"], ["NVIDIA Jetson Orin Nano — 67 TOPS, 1024코어 GPU, 8GB LPDDR5, 7–25W", "엣지 보드"], ["측면 전원부와 냉각팬 3개, 이동용 손잡이·바퀴", "제작"], ["전면 도어 개방 시 분전반 모사 이미지와 기능 화면 노출", "형태"]]}, {"t": "프로토타입 SW", "items": [["백엔드 — Python 3.11 · FastAPI · Uvicorn · Pydantic · PyInstaller", "백엔드"], ["프론트엔드 — Android(Java, SDK API 33) 기반 7개 페이지", "프론트"], ["안드로이드 PC ↔ 엣지 AI 보드 이더넷 연결, API 방식 송수신", "연동"]]}, {"t": "시연 시나리오", "items": [["실제 분전반 6개소 데이터 탑재 (행정동 LN-1A·1B·2B, 복합동 MCC-PH·LN-02·LN-04)", "6개소"], ["부하분리 결과 → 끌 스위치 권고 → 메인 전력 감소 애니메이션", "흐름"], ["실시간 데이터 수집·연동은 4차년도 과제", "계획"]]}]}, {"c": "c5", "no": "05", "img": "images/tech05.webp", "t2": "뉴로모픽", "t1": "소자", "en": "Ag NWN", "name": "뉴로모픽 소자", "lead": "실버 나노와이어 네트워크(Ag NWN)를 웨이퍼 스케일로 균일하게 만드는 공정을 세웠다. 자체 개발한 Slow-spin coating으로 pinning을 억제해 균일도 5.91%, 구동전압 1V, 17.1 pJ/spike를 확보했다.", "st": [{"t": "웨이퍼 스케일 전극 패터닝", "items": [["4인치 산화실리콘 웨이퍼에 6×6mm 패드를 다수 동시 제작", "설계"], ["크롬 마스크 제작 후 포토리소그래피로 미세 전극 패턴 전사", "공정"], ["PVD로 Cr/Au (5/50nm) 전극 증착", "증착"]]}, {"t": "Slow-spin coating 공정 개발", "items": [["DI water : 에탄올 1:1 혼합용매로 증발속도·점도 조절", "용액"], ["PVP 3wt% 첨가로 hysteresis 특성 조절", "첨가제"], ["5 µL 토출 후 500rpm 저속 회전 + heat gun 가열", "조건"], ["마랑고니 대류로 지속 믹싱, 가장자리 pinning 효과 억제", "원리"]]}, {"t": "소자 특성 평가", "items": [["SEM 기반 형태학적 분석으로 inter-connection 목표 달성", "~10⁷"], ["균일도 5.91% — 당해연도 목표(<10%) 달성", "5.91%"], ["DC voltage sweep 구동전압 1V까지 감소 — 4차년도 목표 조기 달성", "1 V"], ["5V·0.5ms 펄스 구동 에너지 17.1 pJ/spike — 4차년도 목표 조기 달성", "17.1 pJ"]]}]}];
