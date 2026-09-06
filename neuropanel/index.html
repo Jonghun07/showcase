@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Autonomous EMS를 위한 뉴로모픽 기술 · 3차년도 연차보고서</title>
+<meta name="description" content="한국에너지기술연구원 기본사업 GP2023-0007 — Autonomous EMS를 위한 뉴로모픽 기술 3차년도(2025) 연차보고서 요약">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%220%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%235E5A9F%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23CA5D35%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227.5%22%20fill%3D%22url%28%23g%29%22%2F%3E%3Cpath%20d%3D%22M3.5%2021.5h5.2L11%209.5l2.4%2012%202.6-16%202.6%2016%202.4-12%202.3%2012h4.2%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%222.2%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+
+/* ===== Paperlogy (참고 웹페이지 제목 서체) ===== */
+@font-face{font-family:'Paperlogy';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-4Regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Paperlogy';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-5Medium.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:'Paperlogy';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-6SemiBold.woff2') format('woff2');font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:'Paperlogy';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-7Bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:'Paperlogy';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-8ExtraBold.woff2') format('woff2');font-weight:800;font-style:normal;font-display:swap}
+@font-face{font-family:'Paperlogy';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-9Black.woff2') format('woff2');font-weight:900;font-style:normal;font-display:swap}
+
+:root{
+  --ink:#111; --ink2:#58616A; --line:#e4e7ec; --bg:#ffffff;
+  --primary-blue:#30A0EE; --secondary-blue:#2974E2; --dark-blue:#0e1e52; --dark-navy:#102053;
+  /* 참고 웹페이지 카드 색상 그대로 */
+  --card1:#3D5E94; --card2:#D46523; --card3:#326F18; --card4:#2D2D86; --card5:#6A4410;
+  /* 본문(아코디언·전략 헤더)용 밝은 톤 — 카드 색은 참고 페이지 값 그대로 둔다 */
+  --tint1:#5C78A5; --tint2:#DB7E46; --tint3:#53863D; --tint4:#4F4F99; --tint5:#826236;
+  --card1d:#25395c; --card2d:#8c3f13; --card3d:#1d420d; --card4d:#191950; --card5d:#3f2809;
+  --serif:'Paperlogy','Pretendard Variable',Pretendard,sans-serif;
+  --sans:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+  --maxw:1480px;
+  --kr:10px;              /* 참고 웹페이지 html font-size */
+}
+@media (max-width:1920px){:root{--kr:9px}}
+@media (max-width:1680px){:root{--kr:8px}}
+@media (max-width:1480px){:root{--kr:7px}}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;overflow-x:clip}
+/* 고정 헤더에 가리지 않도록 앵커 도착 지점을 아래로 밀어둔다 */
+#tech,#detail{scroll-margin-top:96px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+  font-size:16px;line-height:1.6;letter-spacing:-.015em;overflow-x:hidden}
+img{max-width:100%;display:block}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,.pl{font-family:var(--serif)}
+.wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 24px}
+
+/* header */
+/* 참고 웹페이지 .header 그대로: rgba(255,255,255,.25) + blur(25px), 테두리 없음 */
+header.top{position:fixed;inset:0 0 auto 0;z-index:60;
+  -webkit-backdrop-filter:blur(25px);backdrop-filter:blur(25px);
+  background:rgba(255,255,255,.25)}
+.top-in{width:100%;max-width:1920px;margin:0 auto;padding:0 20px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:10px}
+.brand .mark{flex:none;display:flex;align-items:center}
+.brand .mark svg{height:36px;width:auto;display:block}
+.brand .txt{line-height:1.15}
+.brand .txt b{display:block;font-family:var(--serif);font-size:16px;font-weight:800;letter-spacing:-.03em}
+.brand .txt span{display:block;font-size:11px;color:var(--ink2);font-weight:600}
+/* 헤더 CTA 아래 — 이 페이지로 오는 QR */
+.hdr-qr{position:fixed;z-index:59;top:76px;right:20px;display:block;padding:7px;
+  background:rgba(255,255,255,.62);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  border:1px solid var(--line);border-radius:12px;line-height:0;
+  box-shadow:0 4px 16px rgba(17,17,17,.06);transition:box-shadow .2s,border-color .2s}
+.hdr-qr:hover{border-color:#c2c8d0;box-shadow:0 6px 20px rgba(17,17,17,.14)}
+.hdr-qr{width:var(--ctaw,119px);box-sizing:border-box}
+.hdr-qr img{width:100%;height:auto;display:block;border-radius:5px}
+@media (max-width:1180px){.hdr-qr{display:none}}
+.top-cta{display:inline-flex;align-items:center;gap:7px;border:0;border-radius:100px;
+  padding:5px 15px;font-size:12px;line-height:1.6;font-weight:600;color:#fff;white-space:nowrap;
+  background:linear-gradient(90deg,#5E5A9F 0%,#CA5D35 100%);transition:.2s}
+.top-cta:hover{filter:brightness(1.08)}
+.top-cta i{width:5px;height:5px;border-radius:50%;background:#fff;display:block;animation:blink 1.8s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+
+/* hero */
+.hero{display:grid;place-items:center;text-align:center;position:relative;padding:34px 0 20px}
+.hero.below{padding:130px 0 35px}
+.hero .eyebrow{display:inline-block;margin-bottom:26px;padding:9px 20px;border-radius:999px;
+  background:#eef4fb;color:var(--secondary-blue);font-size:13px;font-weight:700;letter-spacing:.01em}
+/* 참고 웹페이지 .visual-title strong 규격 그대로
+   6.6rem / 9.9rem / -0.132rem / 700, rem = 10·9·8·7px (1920·1680·1480 브레이크포인트) */
+.hero h1{margin:0;font-family:var(--serif);font-weight:700;text-align:center;
+  font-size:calc(6.6 * var(--kr));line-height:calc(9.9 * var(--kr));letter-spacing:calc(-0.132 * var(--kr))}
+.hero h1 .g1,.hero h1 .g2{display:block}
+.hero h1 .g1{color:#1f91df}
+.hero h1 .g2{color:#0e1e52}
+@media (max-width:1280px){.hero h1{font-size:calc(7 * var(--kr));line-height:calc(9 * var(--kr))}}
+@media (max-width:640px){.hero h1{font-size:calc(4.8 * var(--kr));line-height:calc(7 * var(--kr))}}
+/* 문구는 비우고 원래 차지하던 2줄 높이만 유지 */
+.hero .sub-space{margin-top:26px;font-size:clamp(14px,2.6vw,17px);height:3.2em}
+/* 성과 지표 — 박스 없이, SW / HW 두 묶음을 가는 세로선으로 가른다 */
+.hero .stats{display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;
+  gap:clamp(26px,5vw,64px);margin-top:80px}
+.hero .stats .grp{display:flex;flex-direction:column;align-items:center;gap:16px;position:relative}
+.hero .stats .grp+.grp::before{content:"";position:absolute;left:calc(-1 * clamp(13px,2.5vw,32px));
+  top:6px;bottom:6px;width:1px;background:var(--line)}
+.hero .stats .grp>h6{margin:0;font-family:var(--serif);font-size:11px;font-weight:700;
+  letter-spacing:.14em;color:#b0b7c1}
+.hero .stats .grp>h6 em{font-style:normal;color:#111;letter-spacing:.02em;font-size:11.5px}
+.hero .stats .items{display:flex;gap:clamp(20px,3.4vw,42px)}
+.hero .stats .items div{text-align:center}
+.hero .stats b{display:block;font-family:var(--serif);font-size:clamp(22px,2.4vw,29px);
+  font-weight:800;color:var(--dark-navy);letter-spacing:-.035em;line-height:1.15;
+  font-variant-numeric:tabular-nums}
+.hero .stats span{display:block;margin-top:7px;font-size:11.5px;color:var(--ink2);
+  font-weight:600;letter-spacing:-.02em}
+@media (max-width:560px){
+  .hero .stats{flex-direction:column;align-items:center;gap:26px}
+  .hero .stats .grp{width:100%}
+  .hero .stats .grp+.grp::before{left:0;right:0;top:-13px;bottom:auto;width:auto;height:1px}
+}
+
+/* section head */
+.sect{padding:100px 0 20px}
+.sect-h{text-align:center;margin-bottom:48px}
+.sect-h h2{margin:0;font-size:clamp(26px,5vw,44px);font-weight:600;letter-spacing:-.04em;color:var(--ink)}
+.sect-h h2 em{font-style:normal;font-weight:400;color:#333}
+.sect-h p{margin:14px 0 0;color:var(--ink2);font-size:14px;font-weight:500}
+
+/* deck — korea.kr 원본 수치 그대로.
+   scale() 로 줄이면 3D 레이어가 비트맵으로 축소돼 글자가 흐려지므로,
+   카드 크기·여백·글자를 모두 --kr(10·9·8·7px) 배수로 지정해 실제 크기로 렌더링한다. */
+.deck-stage{position:relative;width:100%;height:var(--sh,800px);margin-top:6px}
+.deck{position:absolute;top:0;left:50%;width:calc(45 * var(--kr));height:calc(71.9 * var(--kr));
+  margin-left:calc(-22.5 * var(--kr))}
+.card{position:absolute;inset:0;transform:translate(0px,0px) rotate(0deg);
+  transition:transform .6s cubic-bezier(.075,.82,.165,1),z-index 0s}
+.card-flip{position:relative;width:100%;height:100%;transition:.5s cubic-bezier(.4,0,.2,1);transform-style:preserve-3d}
+.card:hover{z-index:99!important}
+.card:hover .card-flip,.card.flip .card-flip{transform:rotateY(180deg)}
+.card-front,.card-back{position:absolute;inset:0;width:100%;height:100%;color:#fff;
+  backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  box-shadow:0 10px 10px 0 rgba(0,0,0,.15);border-radius:calc(2.4 * var(--kr));overflow:hidden;z-index:1}
+.card-front>*{backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.card-front .card-img{position:absolute;inset:0;height:100%}
+.card-front .card-img img{width:100%;height:100%;object-fit:cover;display:block}
+.card-front .card-value{display:flex;position:absolute;top:calc(3.6 * var(--kr));left:calc(3 * var(--kr));
+  height:calc(4.6 * var(--kr));padding:0 calc(2.4 * var(--kr));
+  background:#fff;font-family:var(--serif);font-weight:700;font-size:calc(1.8 * var(--kr));align-items:center;
+  justify-content:center;border-radius:100px;gap:calc(.5 * var(--kr));z-index:2}
+.card-front .arrow{display:flex;position:absolute;top:calc(3.6 * var(--kr));right:calc(3 * var(--kr));
+  width:calc(4.6 * var(--kr));height:calc(4.6 * var(--kr));
+  background:rgba(17,17,17,.20);font-size:calc(2 * var(--kr));border-radius:50%;align-items:center;justify-content:center;z-index:2}
+.card-front .card-info{display:flex;position:absolute;bottom:0;left:0;width:100%;height:calc(11.3 * var(--kr));
+  padding:0 calc(3 * var(--kr));flex-direction:column;justify-content:center;z-index:1;
+  border-radius:calc(2.4 * var(--kr));gap:calc(.8 * var(--kr));
+  -webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px)}
+.card-front .card-info-title{color:#fff;font-family:var(--serif);font-weight:400;
+  font-size:calc(3.4 * var(--kr));line-height:calc(3.84 * var(--kr));letter-spacing:calc(-0.096 * var(--kr))}
+.card-front .card-info-title span{font-weight:700}
+.card-back{display:flex;padding:calc(3.6 * var(--kr)) calc(3 * var(--kr));border:1px solid rgba(255,255,255,.30);
+  transform:rotateY(180deg);flex-direction:column}
+.card-back .card-value{display:flex;height:calc(4.6 * var(--kr));padding:0 calc(2.4 * var(--kr));background:#fff;
+  font-family:var(--serif);font-weight:700;font-size:calc(1.8 * var(--kr));flex-shrink:0;border-radius:100px;
+  align-self:flex-start;align-items:center;gap:calc(.5 * var(--kr));margin-bottom:calc(3 * var(--kr))}
+.card-back .card-title{color:#fff;font-family:var(--serif);font-weight:500;font-size:calc(3.4 * var(--kr));
+  line-height:calc(4.08 * var(--kr));letter-spacing:calc(-0.102 * var(--kr));margin-bottom:calc(2.4 * var(--kr))}
+.card-back .card-title span{font-weight:700}
+.card-back .card-list{display:flex;flex-direction:column;gap:calc(1 * var(--kr));list-style:none;margin:0;padding:0}
+.card-back .card-list li{border-radius:calc(.8 * var(--kr))}   /* 테두리는 버튼 쪽 하나만 — 이중선 방지 */
+.card-back .card-list li button{display:flex;width:100%;height:calc(5.3 * var(--kr));padding:0 calc(1.6 * var(--kr));
+  border:1px solid rgba(255,255,255,.20);background:rgba(255,255,255,.18);color:#fff;font-weight:500;
+  font-size:calc(1.7 * var(--kr));letter-spacing:calc(-0.032 * var(--kr));border-radius:calc(.8 * var(--kr));
+  gap:calc(.8 * var(--kr));align-items:center;text-align:left;transition:.2s}
+.card-back .card-list li button:hover{background:rgba(255,255,255,.32)}
+.card-back .card-list li button span{display:flex;width:calc(6 * var(--kr));height:calc(2.5 * var(--kr));background:#fff;
+  font-family:var(--serif);font-weight:500;font-size:calc(1.35 * var(--kr));letter-spacing:calc(-0.026 * var(--kr));
+  align-items:center;justify-content:center;border-radius:100px;flex:none}
+.card-back .hint{margin-top:auto;padding-top:calc(1.8 * var(--kr));font-size:calc(1.3 * var(--kr));opacity:.8;font-weight:500}
+/* 카드별 색상 — 원본 값 */
+.c1 .card-front .card-value,.c1 .card-back .card-value,.c1 .card-back .card-list li button span{color:var(--card1)}
+.c2 .card-front .card-value,.c2 .card-back .card-value,.c2 .card-back .card-list li button span{color:var(--card2)}
+.c3 .card-front .card-value,.c3 .card-back .card-value,.c3 .card-back .card-list li button span{color:var(--card3)}
+.c4 .card-front .card-value,.c4 .card-back .card-value,.c4 .card-back .card-list li button span{color:var(--card4)}
+.c5 .card-front .card-value,.c5 .card-back .card-value,.c5 .card-back .card-list li button span{color:var(--card5)}
+/* 하단 밴드 — 원본과 동일: 카드색 60% 반투명 + blur(20px) */
+.c1 .card-front .card-info{background:rgba(61,94,148,.60)}
+.c2 .card-front .card-info{background:rgba(212,101,35,.60)}
+.c3 .card-front .card-info{background:rgba(50,111,24,.60)}
+.c4 .card-front .card-info{background:rgba(45,45,134,.60)}
+.c5 .card-front .card-info{background:rgba(106,68,16,.60)}
+.c1 .card-front{background:linear-gradient(160deg,var(--card1) 0%,var(--card1d) 100%)}
+.c2 .card-front{background:linear-gradient(160deg,var(--card2) 0%,var(--card2d) 100%)}
+.c3 .card-front{background:linear-gradient(160deg,var(--card3) 0%,var(--card3d) 100%)}
+.c4 .card-front{background:linear-gradient(160deg,var(--card4) 0%,var(--card4d) 100%)}
+.c5 .card-front{background:linear-gradient(160deg,var(--card5) 0%,var(--card5d) 100%)}
+.c1 .card-back{background:linear-gradient(120deg,var(--card1d) 0%,var(--card1) 100%)}
+.c2 .card-back{background:linear-gradient(120deg,var(--card2d) 0%,var(--card2) 100%)}
+.c3 .card-back{background:linear-gradient(120deg,var(--card3d) 0%,var(--card3) 100%)}
+.c4 .card-back{background:linear-gradient(120deg,var(--card4d) 0%,var(--card4) 100%)}
+.c5 .card-back{background:linear-gradient(120deg,var(--card5d) 0%,var(--card5) 100%)}
+
+/* 좁은 화면(<1300px) — 원본처럼 스택형 카드 + PREV/NEXT */
+.deck-nav{display:none;align-items:center;justify-content:center;gap:26px;margin-top:16px}
+.deck-nav button{display:inline-flex;align-items:center;gap:8px;background:none;border:0;padding:8px 6px;
+  font-family:var(--sans);font-size:13px;font-weight:700;letter-spacing:.08em;color:#222;cursor:pointer;transition:.2s}
+.deck-nav button:disabled{opacity:.25;cursor:default}
+
+/* 홍보 영상 — 그라데이션 패널과 같은 폭 */
+.promo{margin-top:20px;border-radius:24px;overflow:hidden;background:#0d1220;
+  aspect-ratio:16/9;position:relative;box-shadow:0 8px 30px rgba(17,17,17,.10)}
+.promo video{width:100%;height:100%;display:block;object-fit:cover;background:#0d1220}
+@media (max-width:560px){.promo{border-radius:16px}}
+
+/* 맨 위로 — 스크롤을 조금 내리면 조용히 나타난다 */
+.totop{position:fixed;right:clamp(18px,2.4vw,34px);bottom:clamp(18px,2.4vw,34px);z-index:70;
+  width:48px;height:48px;display:grid;place-items:center;padding:0;
+  background:rgba(255,255,255,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  border:1px solid var(--line);border-radius:50%;cursor:pointer;
+  box-shadow:0 6px 20px rgba(17,17,17,.10);color:#4a5260;
+  opacity:0;visibility:hidden;transform:translateY(10px);
+  transition:opacity .35s ease,transform .35s ease,visibility .35s,border-color .2s,color .2s,box-shadow .2s}
+.totop.on{opacity:1;visibility:visible;transform:translateY(0)}
+.totop:hover{color:#111;border-color:#c2c8d0;box-shadow:0 8px 24px rgba(17,17,17,.16)}
+.totop svg{width:17px;height:17px;display:block}
+.totop span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media (max-width:560px){.totop{width:42px;height:42px}}
+
+/* 참고 웹페이지의 스크롤 마크 (card-slide-scroll) */
+.card-slide-scroll{display:flex;margin-top:-64px;flex-direction:column;justify-content:center;align-items:center;gap:12px}
+.card-slide-scroll svg{animation:scrollTopBottom 1s ease-in-out infinite}
+.card-slide-scroll svg .wheel{animation:wheelGlow 1.8s ease-in-out infinite}
+@keyframes wheelGlow{0%,100%{opacity:1}50%{opacity:.22}}
+.card-slide-scroll span{color:#222;font-family:var(--sans);font-weight:600;font-size:12.5px;line-height:15px;
+  letter-spacing:2.4px;text-align:center}
+@keyframes scrollTopBottom{0%{transform:translateY(-6px)}50%{transform:translateY(6px)}100%{transform:translateY(-6px)}}
+
+/* ===== 좁은 화면 보정 ===== */
+@media (max-width:1299px){
+  .card-slide-scroll{margin-top:14px}
+  .sect{padding:120px 0 20px}
+}
+@media (max-width:640px){
+  .top-in{padding:0 14px;gap:10px}
+  .brand{gap:8px}
+  .brand .mark svg{height:28px}
+  .brand .txt b{font-size:13.5px}
+  .brand .txt span{font-size:10px}
+  .top-cta{padding:4px 12px;font-size:11px;white-space:nowrap;flex:none}
+  .sect{padding:92px 0 16px}
+  .sect-h{margin-bottom:30px}
+  .hero.below{padding:70px 0 20px}
+  .detail{padding:25px 0 70px}
+  .block{margin-top:46px}
+  .wrap{padding:0 18px}
+  .duo article{padding:22px 20px 18px}
+  .callout{padding:16px 18px}
+}
+@media (max-width:430px){ .top-cta{display:none} }
+
+/* detail */
+.detail{padding:40px 0 90px}
+.detail .wrap{max-width:1180px}
+.acc{border-top:1px solid var(--line)}
+.acc:last-of-type{border-bottom:1px solid var(--line)}
+.acc-h{width:100%;display:flex;align-items:center;gap:15px;padding:24px 4px;text-align:left}
+/* 클릭·터치로는 포커스 테두리를 그리지 않고, 키보드 이동에서만 은은하게 표시 */
+button:focus,a:focus,summary:focus,[tabindex]:focus{outline:none}
+button:focus-visible,a:focus-visible,summary:focus-visible,[tabindex]:focus-visible{
+  outline:2px solid rgba(45,45,134,.45);outline-offset:3px;border-radius:6px}
+.card-back .card-list li button:focus-visible{outline-color:rgba(255,255,255,.75)}
+.acc-h .no{flex:none;width:46px;height:46px;border-radius:13px;display:grid;place-items:center;color:#fff;
+  font-family:var(--serif);font-size:14px;font-weight:800}
+.acc.c1 .acc-h .no{background:var(--tint1)} .acc.c2 .acc-h .no{background:var(--tint2)}
+.acc.c3 .acc-h .no{background:var(--tint3)} .acc.c4 .acc-h .no{background:var(--tint4)}
+.acc.c5 .acc-h .no{background:var(--tint5)}
+.acc-h .tt{flex:1;min-width:0}
+.acc-h .tt b{display:block;font-family:var(--serif);font-size:clamp(18px,3.4vw,24px);font-weight:600;letter-spacing:-.04em;line-height:1.2}
+.acc-h .tt span{display:block;margin-top:1px;font-size:11.5px;line-height:1.35;color:var(--ink2);font-weight:700;letter-spacing:.08em}
+.acc-h .cnt{flex:none;background:#F3F4F5;border-radius:999px;padding:6px 12px;font-size:12px;font-weight:700;color:#58616A}
+.acc-h .chev{flex:none;width:26px;height:26px;display:grid;place-items:center;color:#98a2b3;transition:transform .3s}
+.acc.open .acc-h .chev{transform:rotate(180deg)}
+.acc-b{display:none;padding:0 4px 32px}
+.acc.open .acc-b{display:block}
+.acc .lead{margin:0 0 20px;padding:17px 19px;border-radius:14px;background:#F7F8FA;border:1px solid var(--line);
+  color:#333;font-size:14px;font-weight:500;line-height:1.68}
+.strat{margin-bottom:12px;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+.strat-h{width:100%;display:flex;align-items:center;gap:12px;padding:15px 17px;background:#F3F4F5;text-align:left;transition:.2s}
+.strat-h:hover{background:#e9ebee}
+.strat-h .b{flex:none;border-radius:8px;padding:5px 10px;font-family:var(--serif);font-size:11px;font-weight:600;
+  background:#dfe4ea;color:#333}
+.strat-h .t{flex:1;font-family:var(--serif);font-size:15px;font-weight:700;letter-spacing:-.035em}
+.strat-h .a{flex:none;font-size:15px;opacity:.55;transition:transform .3s}
+.strat.open .strat-h .a{transform:rotate(90deg);opacity:1}
+.acc.c1 .strat.open .strat-h{background:var(--tint1);color:#fff} .acc.c2 .strat.open .strat-h{background:var(--tint2);color:#fff}
+.acc.c3 .strat.open .strat-h{background:var(--tint3);color:#fff} .acc.c4 .strat.open .strat-h{background:var(--tint4);color:#fff}
+.acc.c5 .strat.open .strat-h{background:var(--tint5);color:#fff}
+.strat.open .strat-h .b{background:rgba(255,255,255,.24);color:#fff}
+.strat-b{display:none;padding:6px 17px 16px;background:#fff}
+.strat.open .strat-b{display:block}
+.strat-b ol{list-style:none;margin:0;padding:0;counter-reset:t}
+.strat-b li{counter-increment:t;display:flex;gap:12px;padding:13px 4px;border-bottom:1px dashed #e9edf3;
+  font-size:14.5px;font-weight:500;letter-spacing:-.03em;line-height:1.5}
+.strat-b li:last-child{border-bottom:0}
+.strat-b li::before{content:counter(t) ".";flex:none;width:20px;color:#98a2b3;font-weight:700;font-size:13.5px;text-align:right}
+.strat-b li .tag{display:inline-block;margin-left:8px;background:#F3F4F5;color:#58616A;border-radius:6px;
+  padding:2px 8px;font-size:11px;font-weight:700;white-space:nowrap;vertical-align:1px}
+
+.closing{padding:74px 0 0}
+.closing .box{border-radius:24px;padding:clamp(30px,4.2vw,46px) clamp(32px,6vw,62px);text-align:center;color:#fff;
+  background:linear-gradient(115deg,var(--card1) 0%,var(--card4) 48%,var(--card3) 100%)}
+.closing h3{margin:0;font-size:clamp(21px,4.4vw,34px);font-weight:800;letter-spacing:-.04em;line-height:1.35}
+.closing p{margin:16px auto 0;max-width:640px;font-size:14.5px;opacity:.92;font-weight:500}
+.closing .tag{display:inline-block;margin-bottom:20px;padding:8px 17px;border-radius:999px;
+  background:rgba(255,255,255,.2);font-family:var(--serif);font-size:12px;font-weight:700;letter-spacing:.12em}
+footer{margin-top:74px;border-top:1px solid var(--line);padding:32px 0 50px;color:#98a2b3;font-size:12px}
+footer .f{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;justify-content:space-between}
+footer b{color:#58616A;font-weight:700}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+
+
+/* 아랫줄 자간을 조절해 윗줄 폭에 맞춤 */
+.brand .txt b,.brand .txt span{width:max-content;max-width:100%}
+
+/* ===== '뉴로모픽 기술이란' — 박스 대신 괘선과 여백으로 ===== */
+.nm{max-width:1000px;margin:0 auto}
+.nm .lead{margin:0 auto 54px;max-width:840px;font-size:19px;line-height:1.9;
+  color:#2b2b2b;letter-spacing:-.028em;font-weight:400;text-align:center}
+.nm .lead b{font-weight:700;color:#111}
+.nm .rows{border-top:1.5px solid #111}
+.nm .rows+.grp-h{margin-top:66px}
+.nm .grp-h{display:flex;align-items:baseline;gap:12px;margin-bottom:12px}
+.nm .grp-h b{font-family:var(--serif);font-size:12px;font-weight:700;letter-spacing:.16em;color:#111}
+.nm .grp-h span{font-size:12.5px;color:#98a2b3;letter-spacing:-.02em}
+.nm .row{display:grid;grid-template-columns:190px 1fr;gap:44px;padding:36px 0;border-bottom:1px solid var(--line)}
+.nm .row h4{margin:0;font-family:var(--serif);font-size:20px;font-weight:600;letter-spacing:-.035em;line-height:1.45;color:#111}
+.nm .row h4 small{display:block;margin-top:7px;font-family:var(--sans);font-size:11.5px;
+  font-weight:600;color:#98a2b3;letter-spacing:0;line-height:1.5}
+/* 각 축의 목적을 한 줄로 못박는다 */
+.nm .row h4 .goal{display:block;margin-top:16px;padding-top:13px;border-top:1px solid var(--line);
+  font-style:normal;font-family:var(--sans);font-size:13px;font-weight:600;
+  letter-spacing:-.025em;line-height:1.4;color:#1f91df}
+.nm .row .body p{margin:0;font-size:15.5px;line-height:1.9;color:#333;letter-spacing:-.025em}
+.nm .figs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:24px;max-width:620px}
+.nm .figs div{padding-left:28px;border-left:1px solid var(--line)}
+.nm .figs div:first-child{padding-left:0;border-left:0}
+.nm .figs b{display:block;font-family:var(--serif);font-size:24px;font-weight:700;
+  color:var(--dark-blue);letter-spacing:-.035em;line-height:1.2}
+.nm .figs span{display:block;margin-top:4px;font-size:12px;color:var(--ink2);letter-spacing:-.02em}
+.nm .steps{display:grid;grid-template-columns:repeat(4,1fr);margin-top:22px;border-top:1px solid var(--line)}
+.nm .steps div{padding:16px 16px 0 0}
+.nm .steps b{display:block;font-family:var(--serif);font-size:12.5px;font-weight:700;color:#b6bcc5;margin-bottom:7px;letter-spacing:.04em}
+.nm .steps p{margin:0;font-size:15px;font-weight:600;color:#111;letter-spacing:-.035em}
+.nm .foot{margin:38px 0 0;padding:26px 30px;background:#f4f5f7;border:0;max-width:none;
+  font-size:13.5px;line-height:1.9;color:#4a5260;letter-spacing:-.025em}
+@media (max-width:760px){
+  .nm .foot{padding:20px 20px}
+  .nm .lead{font-size:17px;margin-bottom:38px}
+  .nm .rows+.grp-h{margin-top:48px}
+  .nm .row{grid-template-columns:1fr;gap:14px;padding:28px 0}
+  .nm .row h4{font-size:18px}
+  .nm .steps{grid-template-columns:repeat(2,1fr)}
+  .nm .figs{grid-template-columns:repeat(3,minmax(0,1fr));max-width:none}
+  .nm .figs div{padding-left:14px}
+}
+
+/* 아랫줄 자간을 조절해 윗줄 폭에 맞춤 */
+.brand .txt b,.brand .txt span{width:max-content;max-width:100%}
+
+/* ===== '뉴로모픽 기술이란' 블록 ===== */
+.prose{max-width:920px;margin:0 auto}
+.prose p{margin:0 0 16px;font-size:15.5px;line-height:1.85;color:#333;font-weight:500;letter-spacing:-.02em}
+.prose p:last-child{margin-bottom:0}
+.prose strong{font-weight:700;color:var(--ink)}
+.duo{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:16px;margin:30px 0 4px}
+.duo article{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:18px;
+  padding:26px 26px 22px;background:#fff}
+.duo article.a{border-top:4px solid var(--card1)}
+.duo article.b{border-top:4px solid var(--card5)}
+.duo h4{margin:0 0 3px;font-family:var(--serif);font-size:19px;font-weight:600;letter-spacing:-.03em}
+.duo .sub{margin:0 0 15px;font-size:11.5px;font-weight:700;letter-spacing:.08em;color:#98a2b3}
+.duo ul{margin:0 0 18px;padding-left:17px;font-size:14.5px;line-height:1.8;color:#333;font-weight:500;letter-spacing:-.02em}
+.duo ul li+li{margin-top:5px}
+.duo .fig{display:flex;gap:10px;flex-wrap:wrap;margin-top:auto}
+.duo .fig div{flex:1 1 96px;border-radius:12px;background:#F7F8FA;padding:12px 14px}
+.duo .fig b{display:block;font-family:var(--serif);font-size:19px;font-weight:700;color:var(--dark-blue);letter-spacing:-.03em}
+.duo .fig span{display:block;margin-top:2px;font-size:11px;color:var(--ink2);font-weight:700}
+.flow{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 4px;justify-content:center}
+.flow span{border:1px solid var(--line);border-radius:100px;padding:9px 17px;font-size:13.5px;
+  font-weight:700;color:#333;background:#fff;letter-spacing:-.02em}
+.flow i{align-self:center;font-style:normal;color:#c3c9d2;font-size:13px}
+.callout{margin:30px 0 0;border-left:3px solid var(--card2);background:#FCF8F4;
+  border-radius:0 14px 14px 0;padding:18px 22px}
+.callout b{display:block;font-family:var(--serif);font-size:15px;font-weight:700;margin-bottom:7px;letter-spacing:-.03em}
+.callout p{margin:0;font-size:14.5px;line-height:1.8;color:#333;font-weight:500;letter-spacing:-.02em}
+
+/* ===== 보고서 본문 — 박스 대신 괘선, 접히는 섹션 ===== */
+
+/* 접히는 섹션 */
+.reps{border-top:1px solid var(--line);margin-top:0}
+.rep{border-bottom:1px solid var(--line)}
+.rep-h{display:grid;grid-template-columns:64px 1fr 26px;align-items:start;gap:18px;width:100%;
+  padding:28px 0;text-align:left;background:none;border:0;cursor:pointer;font:inherit;color:inherit}
+.rep-no{font-family:var(--serif);font-size:13px;font-weight:700;color:#c2c8d0;letter-spacing:.08em;padding-top:6px}
+.rep-t b{display:block;font-family:var(--serif);font-size:clamp(18px,2.4vw,22px);font-weight:600;
+  letter-spacing:-.04em;color:#111;line-height:1.4;transition:color .2s}
+.rep-t em{display:block;margin-top:7px;font-style:normal;font-size:13.5px;color:var(--ink2);letter-spacing:-.025em}
+.rep-h:hover .rep-t b{color:var(--dark-blue)}
+.rep-x{position:relative;width:20px;height:20px;margin-top:9px;justify-self:end}
+.rep-x::before,.rep-x::after{content:"";position:absolute;left:50%;top:50%;background:#111;transition:.3s cubic-bezier(.4,0,.2,1)}
+.rep-x::before{width:14px;height:1.5px;transform:translate(-50%,-50%)}
+.rep-x::after{width:1.5px;height:14px;transform:translate(-50%,-50%)}
+.rep.open .rep-x::after{transform:translate(-50%,-50%) rotate(90deg);opacity:0}
+.rep-b{display:none;padding:0 0 40px 82px}
+.rep.open .rep-b{display:block}
+
+/* 표 */
+.tbl-wrap{overflow-x:auto;margin:4px 0 0}
+.tbl-wrap + .tbl-wrap{margin-top:36px}
+.tbl{width:100%;border-collapse:collapse;font-size:14px;min-width:680px}
+.tbl th{padding:0 14px 11px;border-bottom:1.5px solid #111;text-align:left;white-space:nowrap;
+  font-size:11.5px;font-weight:700;color:#98a2b3;letter-spacing:.05em}
+.tbl td{padding:13px 14px;border-bottom:1px solid #f0f2f5;color:#333;letter-spacing:-.02em}
+.tbl th:first-child,.tbl td:first-child{padding-left:0}
+.tbl th:last-child,.tbl td:last-child{padding-right:0}
+.tbl .num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.tbl .nocol{width:40px;font-family:var(--serif);font-weight:700;color:#c2c8d0}
+.tbl .nw{white-space:nowrap;width:1%}
+.tbl tr:last-child td{border-bottom:0}
+.tbl .tot td{border-top:1.5px solid #111;border-bottom:0;padding-top:15px;font-weight:700;color:#111}
+.tbl .ok{color:var(--dark-blue);font-weight:700}
+.note{margin:16px 0 0;color:#98a2b3;font-size:12.5px;line-height:1.85;letter-spacing:-.02em}
+
+/* 수치 나열 */
+.kpi{display:flex;flex-wrap:wrap;margin:2px 0 26px}
+.kpi div{padding-right:34px;margin-right:34px;border-right:1px solid var(--line)}
+.kpi div:last-child{border-right:0;margin-right:0;padding-right:0}
+.kpi b{display:block;font-family:var(--serif);font-size:26px;font-weight:700;color:var(--dark-blue);letter-spacing:-.035em;line-height:1.2}
+.kpi span{display:block;margin-top:5px;font-size:12.5px;color:#333;font-weight:600;letter-spacing:-.02em}
+.kpi em{display:block;margin-top:2px;font-style:normal;font-size:11.5px;color:#98a2b3;font-weight:500}
+
+/* 계획 */
+.plan{border-top:1px solid var(--line);margin-top:4px}
+.plan div{display:grid;grid-template-columns:170px 1fr;gap:28px;padding:22px 0;border-bottom:1px solid var(--line)}
+.plan div:last-child{border-bottom:0}
+.plan b{font-family:var(--serif);font-size:15.5px;font-weight:600;letter-spacing:-.03em;color:#111;margin:0}
+.plan ul{margin:0;padding-left:17px;color:#333;font-size:14.5px;line-height:1.9;letter-spacing:-.02em;font-weight:400}
+
+/* 과제 개요 */
+.block{margin-top:74px}
+.block>h3{margin:0 0 4px;font-family:var(--serif);font-size:15px;font-weight:700;
+  letter-spacing:.06em;color:#98a2b3}
+.block>h3 em{font-style:normal;font-weight:700;color:#98a2b3}
+.meta{display:grid;grid-template-columns:repeat(2,1fr);gap:0 56px;border-top:1.5px solid #111;margin-top:14px}
+.meta div{display:grid;grid-template-columns:132px 1fr;gap:14px;padding:15px 0;border-bottom:1px solid var(--line)}
+.meta span{font-size:12.5px;color:#98a2b3;font-weight:600;letter-spacing:-.01em}
+.meta b{font-size:14.5px;font-weight:600;color:#111;letter-spacing:-.025em}
+
+/* 맺음 — 원래의 그라데이션 패널 */
+.closing{padding:0 0 96px;max-width:1000px;margin:0 auto}
+/* 그라데이션이 아주 느리게 흐른다 — 색 띠를 넓게 잡고 배경 위치만 왕복 */
+.closing .box{position:relative;isolation:isolate;overflow:hidden;
+  border-radius:24px;padding:clamp(30px,4.2vw,46px) clamp(32px,6vw,62px);text-align:center;color:#fff;
+  background:linear-gradient(115deg,
+    var(--card1) 0%, var(--card4) 26%, #24507e 48%,
+    var(--card3) 70%, var(--card4) 88%, var(--card1) 100%);
+  background-size:230% 230%;background-position:0% 50%;
+  animation:closingFlow 30s ease-in-out infinite}
+/* 아주 옅은 빛 무리가 천천히 지나간다 */
+.closing .box::before{content:"";position:absolute;inset:-35%;z-index:-1;pointer-events:none;
+  background:radial-gradient(38% 52% at 32% 42%, rgba(255,255,255,.13), rgba(255,255,255,0) 72%);
+  animation:closingSheen 38s ease-in-out infinite alternate}
+@keyframes closingFlow{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}}
+@keyframes closingSheen{
+  0%{transform:translate3d(-7%,-5%,0) scale(1)}
+  100%{transform:translate3d(11%,7%,0) scale(1.06)}}
+@media (prefers-reduced-motion:reduce){
+  .closing .box{animation:none;background-position:38% 50%}
+  .closing .box::before{animation:none}}
+.closing .tag{display:inline-block;margin-bottom:20px;padding:8px 17px;border-radius:999px;
+  background:rgba(255,255,255,.2);font-family:var(--serif);font-size:12px;font-weight:700;letter-spacing:.12em;color:#fff}
+.closing h3{margin:0;font-family:var(--serif);font-size:min(28px,2.5vw);font-weight:800;
+  letter-spacing:-.04em;line-height:1.4;color:#fff;white-space:nowrap}
+.closing h3 .brk{display:none}
+.closing p{margin:16px auto 0;max-width:640px;font-size:14.5px;line-height:1.8;opacity:.92;font-weight:500;color:#fff}
+.closing p b{font-family:var(--serif);font-size:1.62em;font-weight:800;color:#fff;
+  letter-spacing:-.025em;padding:0 2px 1px;box-shadow:inset 0 -9px 0 rgba(255,255,255,.22)}
+
+@media (max-width:760px){
+  .closing h3{white-space:normal;font-size:clamp(18px,4.6vw,25px);line-height:1.45}
+  .closing h3 .brk{display:inline}
+  .rep-h{grid-template-columns:32px 1fr 20px;gap:12px;padding:20px 0}
+  .rep-b{padding-left:0;padding-bottom:30px}
+  .kpi div{padding-right:20px;margin-right:20px;margin-bottom:12px}
+  .plan div{grid-template-columns:1fr;gap:8px}
+  .meta{grid-template-columns:1fr}
+  .meta div{grid-template-columns:110px 1fr}
+}
+.block>p.lede{margin:0 0 8px;color:var(--ink2);font-size:14px;font-weight:500}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-in">
+    <div class="brand">
+      <div class="mark"><svg class="kier" viewBox="0 0 1120 746" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="한국에너지기술연구원 KIER"><g transform="translate(0,746) scale(0.1,-0.1)" fill="#16274F"><path d="M11072 7348 c-9 -17 -31 -47 -48 -67 -17 -20 -38 -50 -47 -67 -9 -18
+-51 -64 -93 -102 -112 -103 -243 -166 -402 -191 -130 -22 -454 -24 -4922 -37
+-2359 -7 -2171 1 -2348 -96 -77 -42 -117 -73 -197 -153 -55 -55 -107 -113
+-115 -130 -8 -16 -26 -48 -41 -70 -37 -56 -97 -274 -124 -454 -8 -53 -24 -128
+-35 -168 -11 -40 -27 -116 -35 -170 -9 -54 -29 -154 -45 -223 -16 -69 -36
+-163 -45 -210 -9 -47 -28 -123 -42 -168 -19 -64 -23 -91 -17 -115 13 -45 30
+-44 55 5 12 24 33 57 47 73 14 17 36 53 48 82 34 75 105 164 194 241 113 97
+204 145 335 178 l110 27 1550 8 c853 4 2412 7 3465 8 1858 1 2006 3 2112 31
+61 17 168 79 228 133 116 106 214 310 245 514 9 60 25 137 35 173 11 36 26
+112 35 170 9 58 29 161 45 230 16 69 36 174 45 234 9 60 27 138 41 174 33 88
+32 172 -3 172 -7 0 -22 -14 -31 -32z"/><path d="M363 4489 c-25 -25 -14 -59 32 -107 25 -25 45 -53 45 -61 0 -24 -27
+-144 -60 -261 -16 -58 -36 -145 -45 -193 -9 -48 -25 -114 -36 -145 -11 -31
+-27 -93 -35 -137 -8 -44 -29 -129 -46 -190 -26 -96 -36 -116 -73 -155 -56 -59
+-69 -84 -55 -109 9 -18 20 -19 182 -14 113 4 187 2 213 -5 32 -10 44 -9 63 4
+27 18 23 44 -13 84 -12 14 -31 40 -40 59 -17 33 -17 38 0 110 53 223 85 335
+97 342 34 22 58 -4 77 -85 7 -27 22 -69 35 -95 13 -25 31 -69 40 -97 9 -28 28
+-66 41 -84 34 -46 33 -91 -4 -132 -44 -51 -52 -72 -38 -93 7 -9 24 -16 38 -15
+13 1 109 3 212 4 127 2 192 7 200 15 15 15 -13 68 -71 133 -31 34 -48 64 -59
+104 -8 31 -27 80 -43 108 -15 28 -31 64 -34 80 -4 16 -25 65 -47 110 -21 44
+-39 87 -39 95 0 8 -13 38 -30 68 -51 89 -55 82 184 326 117 119 221 217 230
+217 26 0 76 55 76 83 0 44 -22 52 -99 37 -56 -10 -81 -10 -136 0 -66 12 -69
+12 -86 -9 -20 -24 -17 -38 18 -90 13 -19 23 -39 23 -46 0 -18 -41 -66 -171
+-200 -64 -66 -138 -146 -165 -178 -54 -64 -79 -77 -102 -54 -14 14 -13 25 11
+109 14 51 38 140 53 198 30 111 47 138 112 172 34 18 51 61 35 87 -9 13 -23
+15 -74 11 -98 -8 -309 -5 -359 4 -32 5 -48 4 -57 -5z"/><path d="M1563 4489 c-23 -24 -13 -52 37 -105 51 -54 58 -71 39 -105 -5 -11
+-17 -59 -25 -107 -8 -48 -26 -118 -39 -157 -13 -38 -31 -109 -40 -156 -8 -47
+-24 -111 -34 -142 -11 -31 -29 -104 -41 -164 -36 -182 -65 -264 -106 -304 -35
+-33 -64 -78 -64 -98 0 -5 6 -16 14 -24 12 -12 44 -13 174 -9 107 3 175 1 210
+-7 92 -23 121 20 56 84 -19 20 -41 50 -49 68 -15 37 -6 88 46 272 16 55 37
+145 49 201 11 55 26 119 34 141 8 22 21 78 31 124 9 46 27 122 40 169 14 47
+29 104 35 127 8 31 21 50 48 70 50 38 61 53 62 86 0 37 -26 46 -109 34 -62 -8
+-226 -4 -316 9 -26 3 -44 1 -52 -7z"/><path d="M2283 4489 c-23 -24 -14 -50 39 -105 l52 -55 -13 -47 c-7 -26 -19
+-80 -26 -119 -7 -40 -23 -101 -34 -135 -11 -35 -30 -108 -41 -163 -11 -55 -29
+-127 -40 -160 -11 -33 -28 -103 -39 -155 -36 -181 -67 -264 -120 -322 -53 -59
+-62 -76 -51 -98 7 -13 68 -15 480 -14 l471 0 35 36 c30 29 39 50 55 119 11 46
+32 110 46 142 20 44 24 63 16 76 -27 43 -90 8 -149 -84 -17 -28 -57 -70 -87
+-93 -46 -36 -73 -47 -168 -71 -152 -38 -205 -45 -238 -31 -29 12 -61 57 -61
+87 0 27 27 146 54 238 13 44 30 111 37 149 17 98 41 120 119 113 31 -3 69 -12
+83 -22 38 -25 71 -98 63 -140 -13 -68 37 -100 82 -52 29 30 39 61 47 142 11
+104 34 195 58 229 33 47 23 126 -18 126 -7 0 -40 -33 -75 -72 -90 -104 -91
+-105 -169 -113 -132 -13 -141 2 -102 157 16 62 37 133 45 157 9 24 16 58 16
+76 0 46 39 89 94 105 38 10 59 10 133 -5 48 -9 103 -23 120 -31 44 -18 70 -65
+79 -141 5 -52 11 -67 30 -79 17 -12 27 -13 43 -4 35 18 49 52 61 145 6 50 13
+107 16 127 5 30 2 41 -19 62 l-25 25 -384 -1 c-211 -1 -410 1 -443 6 -44 6
+-63 4 -72 -5z"/><path d="M3503 4494 c-7 -3 -13 -18 -13 -33 0 -21 14 -41 55 -78 30 -28 55
+-57 55 -64 0 -8 -9 -33 -20 -57 -11 -24 -29 -92 -40 -151 -11 -60 -29 -135
+-41 -167 -11 -33 -29 -103 -40 -157 -11 -53 -30 -132 -44 -175 -13 -42 -31
+-117 -39 -167 -9 -49 -19 -100 -21 -112 -3 -12 -32 -53 -65 -90 -48 -54 -60
+-74 -58 -97 l3 -29 238 -1 c289 -1 289 -1 202 94 -37 40 -55 68 -55 86 0 14
+16 73 35 132 19 59 39 139 45 177 18 127 21 135 41 146 16 8 26 7 44 -5 34
+-22 50 -59 64 -146 7 -41 27 -119 46 -175 19 -55 42 -132 50 -171 12 -54 23
+-78 46 -100 29 -28 35 -29 157 -36 172 -11 163 -11 180 6 21 21 10 42 -64 118
+-58 61 -61 67 -77 147 -9 46 -30 120 -46 165 -71 200 -74 215 -58 239 8 12 48
+39 90 61 95 48 163 114 205 196 27 55 32 76 32 134 0 83 -22 135 -82 196 -51
+54 -98 74 -233 100 -100 19 -119 20 -213 9 -92 -11 -210 -9 -327 6 -22 2 -46
+2 -52 -1z m527 -119 c70 -36 80 -54 80 -152 0 -133 -13 -175 -80 -253 -56 -64
+-62 -68 -128 -85 -114 -28 -142 5 -103 124 32 100 61 220 61 255 0 46 30 97
+70 118 44 23 41 23 100 -7z"/><path d="M5148 4461 c-21 -6 -50 -35 -59 -59 -5 -12 -16 -68 -24 -125 -9 -56
+-27 -145 -40 -198 -13 -53 -33 -152 -45 -220 -11 -68 -29 -156 -40 -195 -10
+-38 -30 -136 -44 -216 -14 -81 -32 -163 -41 -184 -8 -20 -15 -56 -15 -80 0
+-81 -175 -74 1841 -74 l1798 0 20 26 c28 35 46 100 77 269 14 77 36 183 49
+235 13 52 31 142 40 200 9 58 25 134 35 170 11 36 28 123 40 194 11 70 25 136
+30 146 24 46 3 108 -38 111 -49 3 -3574 3 -3584 0z"/><path d="M2122 2757 c-25 -29 -71 -190 -87 -300 -9 -61 -32 -177 -50 -257 -19
+-80 -41 -190 -50 -245 -9 -55 -27 -140 -40 -190 -13 -49 -27 -112 -30 -140 -4
+-27 -21 -111 -37 -185 -39 -175 -36 -256 14 -381 41 -102 95 -170 188 -233
+121 -83 63 -79 1145 -87 528 -4 1934 -8 3125 -9 2269 -1 2692 -7 2820 -35 137
+-30 274 -122 349 -233 58 -87 69 -112 91 -217 28 -133 38 -162 57 -169 21 -8
+50 18 63 58 5 17 14 76 20 131 6 55 23 150 39 210 16 61 34 144 41 185 6 41
+24 125 40 185 16 61 33 141 40 180 6 38 27 132 47 210 29 114 36 165 40 276 7
+164 -4 221 -57 309 -74 122 -195 211 -323 235 -61 12 -620 16 -3537 23 l-3465
+9 -82 28 c-70 24 -93 38 -147 89 -79 74 -141 187 -150 268 -22 209 -28 253
+-39 275 -11 21 -15 22 -25 10z"/></g></svg></div>
+      <div class="txt"><b>Autonomous EMS 뉴로모픽</b><span>한국에너지기술연구원 · 3차년도 성과 요약 · 김종훈</span></div>
+    </div>
+    <a class="top-cta" href="#tech"><i></i>수행 내용 보기</a>
+  </div>
+</header>
+<a class="hdr-qr" href="https://jonghun07.github.io/bcl/index_01.html" aria-label="이 페이지 주소 QR 코드">
+  <img src="images/qr.webp" width="472" height="472" decoding="async" alt="">
+</a>
+
+<section class="sect" id="parts">
+  <div class="wrap">
+    <div class="sect-h">
+      <h2><em>5대</em> 핵심기술</h2>
+    </div>
+    <div class="deck-area">
+      <div class="deck-stage" id="stage"><div class="deck" id="deck"></div></div>
+      <div class="deck-nav" id="decknav">
+        <button type="button" id="prev">&#8592; PREV</button>
+        <button type="button" id="next">NEXT &#8594;</button>
+      </div>
+      <div class="card-slide-scroll" aria-hidden="true">
+        <svg width="16" height="24" viewBox="0 0 20 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="1" width="18" height="28" rx="9" stroke="#222" stroke-width="1.6"/>
+          <line class="wheel" x1="10" y1="7" x2="10" y2="12" stroke="#2FA46A" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        <span>SCROLL</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero below">
+  <div class="wrap">
+    <h1><span class="g1">Autonomous EMS를 위한</span><span class="g2">뉴로모픽 기술</span></h1>
+    <div class="stats">
+      <div class="grp">
+        <h6><em>소프트웨어</em> · SNN</h6>
+        <div class="items">
+          <div><b>87.6%</b><span>예측 정확도</span></div>
+          <div><b>54%</b><span>추론에너지 절감률</span></div>
+        </div>
+      </div>
+      <div class="grp">
+        <h6><em>하드웨어</em> · Ag NWN</h6>
+        <div class="items">
+          <div><b>17.1 pJ</b><span>spike당 에너지</span></div>
+          <div><b>1 V</b><span>소자 구동전압</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="detail" id="detail">
+  <div class="wrap">
+    <div class="closing">
+      <div class="box">
+        <span class="tag">뉴로패널 적용에 따른 Autonomous EMS 운영 효과</span>
+        <h3>분전반이 스스로 부하를 가려내고, <br class="brk">꺼도 되는 스위치를 스스로 고른다.</h3>
+        <p>부하분리 · 미래상태 예측 · 중요도 판단을 하나의 엣지 장치로 묶어,<br>2개 동 6개 분전반에서 <b>15.6%</b>의 에너지절감을 확인했습니다.</p>
+      </div>
+      <div class="promo">
+        <video controls preload="none" playsinline poster="video/cm-poster.webp"
+               controlslist="nodownload" width="1920" height="1080">
+          <source src="video/cm-web.mp4" type="video/mp4">
+          이 브라우저에서는 영상을 재생할 수 없습니다.
+        </video>
+      </div>
+    </div>
+
+    <div class="sect-h" style="margin-bottom:44px">
+      <h2>뉴로모픽 <em>기술이란</em></h2>
+    </div>
+
+    <div class="nm">
+      <p class="lead">뇌의 신경세포와 시냅스가 신호를 주고받는 방식을 그대로 옮겨,
+      <b>같은 데이터를 훨씬 적은 전력으로 처리하는 기술</b>이다.</p>
+
+      <div class="grp-h"><b>개발 축</b><span>과제가 직접 개발하는 두 갈래</span></div>
+      <div class="rows">
+        <div class="row">
+          <h4>소프트웨어<small>SNN, Spiking Neural Network</small><em class="goal">저전력 추론</em></h4>
+          <div class="body">
+            <p>기존 ANN은 모든 뉴런이 매 순간 곱셈과 덧셈을 수행한다. SNN은 발생한 이벤트만
+            스파이크로 전달해 덧셈 위주로 동작하므로, 시계열 예측에 유리하면서 연산 에너지가 낮다.</p>
+            <div class="figs">
+              <div><b>87.57%</b><span>iSpikeformer 예측 정확도</span></div>
+              <div><b>54%</b><span>1회 추론 에너지 절감</span></div>
+              <div><b>13.0%</b><span>부하분리 오차율(nMAE)</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <h4>하드웨어<small>Ag NWN, 실버 나노와이어 네트워크</small><em class="goal">저전력 구동</em></h4>
+          <div class="body">
+            <p>대부분의 뉴로모픽 칩은 격자형 어레이지만, 실제 뇌의 뉴런은 무작위 연결망이다.
+            실버 나노와이어로 그 형태를 구현했고, Slow-spin coating 공정으로 균일한 네트워크를 확보했다.</p>
+            <div class="figs">
+              <div><b>17.1 pJ</b><span>spike당 에너지</span></div>
+              <div><b>1 V</b><span>구동전압</span></div>
+              <div><b>5.91%</b><span>네트워크 균일도</span></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="grp-h"><b>적용 맥락</b><span>이 기술이 어디에 왜 앉는가</span></div>
+      <div class="rows">
+        <div class="row">
+          <h4>왜 EMS인가<small>Autonomous EMS</small></h4>
+          <div class="body">
+            <p>EMS가 엣지로 내려갈수록 처리할 데이터는 폭증하는 반면, 분전반마다 설치되는 엣지
+            디바이스가 쓸 수 있는 전력은 제한적이다. 그 해법으로 뉴로모픽을 택했다.</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <h4>뉴로패널<small>기술이 앉는 자리</small></h4>
+          <div class="body">
+            <p>최종 목적지는 건물 분전함이다. 메인 차단기의 전력량계 하나에서 네 가지를 수행해
+            꺼도 되는 스위치를 스스로 고른다.</p>
+            <div class="steps">
+              <div><b>01</b><p>부하 분리</p></div>
+              <div><b>02</b><p>에너지 용도 라벨링</p></div>
+              <div><b>03</b><p>중요도 판단</p></div>
+              <div><b>04</b><p>상태값 예측</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="foot">현재 SNN 알고리즘은 상용 GPU 기반 엣지 AI 보드(Jetson Orin Nano)에서 구동하고 있고,
+      자체 개발 중인 실버 나노와이어 소자는 단품 특성 평가 단계다. 두 축이 각각 성숙하는 중이며,
+      뉴로모픽 칩이 완성되면 개발해 둔 SNN 알고리즘을 그대로 얹는다는 구상이다.</p>
+    </div>
+
+    <div style="height:96px"></div>
+
+    <div class="sect-h" id="tech" style="margin-bottom:36px">
+      <h2>핵심기술별 <em>수행 내용</em></h2>
+    </div>
+    <div id="accs"></div>
+
+    <div class="sect-h" style="margin-top:96px;margin-bottom:34px">
+      <h2>3차년도 <em>주요 성과와 4차년도 계획</em></h2>
+    </div>
+    <div class="reps">
+      <section class="rep">
+        <button class="rep-h" type="button" aria-expanded="false">
+          <span class="rep-no">01</span>
+          <span class="rep-t"><b>3차년도 목표 대비 달성도</b><em>7개 목표지표 전부 달성 (달성도 100%)</em></span>
+          <span class="rep-x" aria-hidden="true"></span>
+        </button>
+        <div class="rep-b">
+      <div class="tbl-wrap"><table class="tbl">
+        <thead><tr><th>핵심기술</th><th>목표지표</th><th>단위</th><th class="num">3차년도 목표</th><th class="num">달성값</th><th class="num">달성도</th></tr></thead>
+        <tbody>
+<tr><td>SNN 기반 EMS 운영 알고리즘</td><td>예측에러율</td><td>%</td><td class="num">&lt;2</td><td class="num">달성</td><td class="num ok">100%</td></tr>
+<tr><td>A-EMS 운영 기술</td><td>예측정확도(SNN)</td><td>%</td><td class="num">85</td><td class="num">87.57</td><td class="num ok">100%</td></tr>
+<tr><td>A-EMS 운영 기술</td><td>에너지절감</td><td>%</td><td class="num">15</td><td class="num">15.6</td><td class="num ok">100%</td></tr>
+<tr><td>네트워크 뉴로모픽 소자</td><td>Inter-connection</td><td>EA</td><td class="num">~10⁷</td><td class="num">달성</td><td class="num ok">100%</td></tr>
+<tr><td>네트워크 뉴로모픽 소자</td><td>구동전압</td><td>V</td><td class="num">&lt;3</td><td class="num">1.0</td><td class="num ok">100%</td></tr>
+<tr><td>네트워크 뉴로모픽 소자</td><td>에너지소비</td><td>pJ/spike</td><td class="num">&lt;50</td><td class="num">17.1</td><td class="num ok">100%</td></tr>
+<tr><td>네트워크 뉴로모픽 소자</td><td>균일도</td><td>%</td><td class="num">&lt;10</td><td class="num">5.91</td><td class="num ok">100%</td></tr>
+        </tbody>
+      </table></div>
+      <p class="note">구동전압 1V, 에너지소비 17.1 pJ/spike는 4차년도 목표치(&lt;2V, &lt;30pJ)를 조기 달성한 값.</p>
+        </div>
+      </section>
+      <section class="rep">
+        <button class="rep-h" type="button" aria-expanded="false">
+          <span class="rep-no">02</span>
+          <span class="rep-t"><b>알고리즘 통합과 에너지절감률</b><em>2개 동 6개 분전반, 3.6개월 평가에서 15.6% 절감</em></span>
+          <span class="rep-x" aria-hidden="true"></span>
+        </button>
+        <div class="rep-b">
+      <div class="tbl-wrap"><table class="tbl">
+        <thead><tr><th>건물</th><th>분전반</th><th class="num">채널</th><th class="num">제어 전 (kWh)</th><th class="num">제어 후 (kWh)</th><th class="num">절감량 (kWh)</th><th class="num">절감률</th></tr></thead>
+        <tbody>
+<tr><td>복합동</td><td>4층 EPS_1 (LN-04)</td><td class="num">33</td><td class="num">20,875</td><td class="num">16,216</td><td class="num">4,659</td><td class="num ok">22.3%</td></tr>
+<tr><td>복합동</td><td>5층 EPS_1 (LN-05)</td><td class="num">33</td><td class="num">19,137</td><td class="num">15,985</td><td class="num">3,151</td><td class="num ok">16.5%</td></tr>
+<tr><td>복합동</td><td>2층 EPS_1 (LN-02)</td><td class="num">33</td><td class="num">15,228</td><td class="num">13,552</td><td class="num">1,676</td><td class="num ok">11.0%</td></tr>
+<tr><td>행정동</td><td>2층 복도 (LN-2AB)</td><td class="num">19</td><td class="num">12,113</td><td class="num">10,859</td><td class="num">1,255</td><td class="num ok">10.4%</td></tr>
+<tr><td>행정동</td><td>1층 복도 (LN-1AB)</td><td class="num">14</td><td class="num">11,659</td><td class="num">9,871</td><td class="num">1,788</td><td class="num ok">15.3%</td></tr>
+<tr><td>행정동</td><td>3층 복도 (LN-3AB)</td><td class="num">20</td><td class="num">5,220</td><td class="num">4,651</td><td class="num">569</td><td class="num ok">10.9%</td></tr>
+          <tr class="tot"><td>총괄</td><td>6개 분전반</td><td class="num">152</td><td class="num">84,232</td><td class="num">71,134</td><td class="num">13,098</td><td class="num ok">15.6%</td></tr>
+        </tbody>
+      </table></div>
+      <p class="note">평가 구간 — 봄 ’24.05.04~05.31 · 여름 ’24.08.04~08.31 · 가을 ’24.11.03~11.30 · 겨울 ’25.02.02~02.28</p>
+        </div>
+      </section>
+      <section class="rep">
+        <button class="rep-h" type="button" aria-expanded="false">
+          <span class="rep-no">03</span>
+          <span class="rep-t"><b>에너지 용도별 부하분리 성능</b><em>59개 분전반 282개 서브채널, 가중평균 nMAE 13.0%</em></span>
+          <span class="rep-x" aria-hidden="true"></span>
+        </button>
+        <div class="rep-b">
+      <div class="tbl-wrap"><table class="tbl">
+        <thead><tr><th>에너지 용도</th><th class="num">분전반 수</th><th class="num">채널 수</th><th class="num">nMAE</th><th class="num">MAE</th></tr></thead>
+        <tbody>
+<tr><td>전열</td><td class="num">17</td><td class="num">109</td><td class="num">11.3%</td><td class="num">76.1 W</td></tr>
+<tr><td>조명</td><td class="num">15</td><td class="num">74</td><td class="num">13.2%</td><td class="num">81.3 W</td></tr>
+<tr><td>냉난방</td><td class="num">18</td><td class="num">61</td><td class="num">13.3%</td><td class="num">255.1 W</td></tr>
+<tr><td>실험실</td><td class="num">6</td><td class="num">30</td><td class="num">15.3%</td><td class="num">226.8 W</td></tr>
+<tr><td>환기</td><td class="num">2</td><td class="num">5</td><td class="num">16.7%</td><td class="num">474.0 W</td></tr>
+<tr><td>급탕</td><td class="num">1</td><td class="num">3</td><td class="num">36.1%</td><td class="num">143.0 W</td></tr>
+          <tr class="tot"><td>가중평균</td><td class="num">59</td><td class="num">282</td><td class="num ok">13.0%</td><td class="num">140.0 W</td></tr>
+        </tbody>
+      </table></div>
+      <p class="note">클라이언트(분전반) 수가 많은 용도일수록 오차율이 낮음 — 참여 분전반이 늘면 성능 개선이 예상됨.</p>
+        </div>
+      </section>
+      <section class="rep">
+        <button class="rep-h" type="button" aria-expanded="false">
+          <span class="rep-no">04</span>
+          <span class="rep-t"><b>ANN 대비 SNN 예측 정확도</b><em>정확도 87.57%, 1회 추론 에너지 54% 절감</em></span>
+          <span class="rep-x" aria-hidden="true"></span>
+        </button>
+        <div class="rep-b">
+      <div class="tbl-wrap"><table class="tbl">
+        <thead><tr><th>에너지 용도</th><th class="num">서브채널</th><th class="num">iTransformer</th><th class="num">iSpikeformer</th></tr></thead>
+        <tbody>
+<tr><td>냉난방</td><td class="num">61</td><td class="num">90.13%</td><td class="num ok">90.09%</td></tr>
+<tr><td>실험실</td><td class="num">5</td><td class="num">89.10%</td><td class="num ok">90.00%</td></tr>
+<tr><td>급탕</td><td class="num">30</td><td class="num">88.41%</td><td class="num ok">88.46%</td></tr>
+<tr><td>조명</td><td class="num">74</td><td class="num">86.17%</td><td class="num ok">87.34%</td></tr>
+<tr><td>환기</td><td class="num">109</td><td class="num">86.88%</td><td class="num ok">86.13%</td></tr>
+<tr><td>전열</td><td class="num">3</td><td class="num">76.27%</td><td class="num ok">79.59%</td></tr>
+          <tr class="tot"><td>가중평균</td><td class="num">282</td><td class="num">87.49%</td><td class="num ok">87.57%</td></tr>
+        </tbody>
+      </table></div>
+        </div>
+      </section>
+      <section class="rep">
+        <button class="rep-h" type="button" aria-expanded="false">
+          <span class="rep-no">05</span>
+          <span class="rep-t"><b>3차년도 연구성과</b><em>논문 3편, 학술발표 8건, 특허 출원 2건</em></span>
+          <span class="rep-x" aria-hidden="true"></span>
+        </button>
+        <div class="rep-b">
+      <div class="kpi">
+        <div><b>3</b><span>학술논문</span><em>SCIE 2 · 비SCIE 1</em></div>
+        <div><b>8</b><span>학술회의 발표</span><em>국내 8건</em></div>
+        <div><b>2</b><span>특허 출원</span><em>미국 1 · 국내 1</em></div>
+        <div><b>1</b><span>프로토타입</span><em>뉴로패널 HW/SW</em></div>
+      </div>
+      <div class="tbl-wrap"><table class="tbl">
+        <thead><tr><th class="num nocol">No.</th><th>논문명</th><th class="nw">학술지</th><th class="nw">주저자</th><th class="nw">구분</th><th class="num">게재일</th></tr></thead>
+        <tbody>
+<tr><td class="num nocol">1</td><td>A scalable data-driven framework for demand flexibility in commercial building clusters enabling grid-interactive efficient buildings</td><td class="nw">Journal of Building Engineering</td><td class="nw">한광우</td><td class="nw">SCIE</td><td class="num">’25.09.01</td></tr>
+<tr><td class="num nocol">2</td><td>Performance evaluation of GPT-4o on South Korean national exams for building mechanical equipment maintenance</td><td class="nw">Scientific Reports</td><td class="nw">최하늘</td><td class="nw">SCIE</td><td class="num">’25.08.19</td></tr>
+<tr><td class="num nocol">3</td><td>Grid-interactive Efficient Building(GEB) 구현을 위한 국내 건물 에너지 설계기준 및 인증제도 분석</td><td class="nw">설비공학논문집</td><td class="nw">최하늘</td><td class="nw">비SCIE</td><td class="num">’25.10.01</td></tr>
+        </tbody>
+      </table></div>
+      <div class="tbl-wrap"><table class="tbl">
+        <thead><tr><th class="num nocol">No.</th><th>지식재산권 명칭</th><th class="nw">국가</th><th class="num">출원일</th><th class="num">출원번호</th></tr></thead>
+        <tbody>
+<tr><td class="num nocol">1</td><td>인공지능을 기반으로 한 대형 건물의 냉난방 관리 장치, 시스템 및 방법</td><td class="nw">미국</td><td class="num">’25.04.29</td><td class="num">19/193663</td></tr>
+<tr><td class="num nocol">2</td><td>분전반 기반 에너지 관리 시스템 및 그 방법</td><td class="nw">대한민국</td><td class="num">’25.09.01</td><td class="num">10-2025-0123125</td></tr>
+        </tbody>
+      </table></div>
+      <p class="note">학술회의 — 대한설비공학회 하계·동계, 한국계산뇌과학회, 대한전기학회 추계, 대한건축공학회 추계 등 총 8건.</p>
+        </div>
+      </section>
+      <section class="rep">
+        <button class="rep-h" type="button" aria-expanded="false">
+          <span class="rep-no">06</span>
+          <span class="rep-t"><b>4차년도(2026) 연구개발계획</b><em>제로샷 범용 모델과 시작품 실증</em></span>
+          <span class="rep-x" aria-hidden="true"></span>
+        </button>
+        <div class="rep-b">
+      <div class="plan">
+        <div><b>SW · 제로샷 범용 모델</b><ul>
+          <li>KIER 3개 동 데이터 추가 활용, 용도 클래스 세분화</li>
+          <li>비학습 환경 대응 제로샷 추론 방안 정립</li>
+          <li>미래상태예측을 중요도 산정 입력으로 통합</li></ul></div>
+        <div><b>HW · 시작품 실증</b><ul>
+          <li>실제 분전반 설치·통신 제약을 반영한 시작품 개발</li>
+          <li>실부하 환경에서 절감효과·신뢰성 검증</li>
+          <li>분전반 실시간 데이터 연동</li></ul></div>
+        <div><b>Device · Ag NWNs 패턴 인식</b><ul>
+          <li>Ag NWNs 소자 기반 패턴 인식 가능성 검토</li>
+          <li>ZNCC 등 KPI 기반 변별력 분석</li>
+          <li>시스템 연계 방안 마련</li></ul></div>
+        <div><b>System · 계층 연계</b><ul>
+          <li>클라우드–온프레–엣지–건물 단 계층 구조 설계</li>
+          <li>뉴로패널 연동 에이전틱 AI 워크플로우 구성</li>
+          <li>BEMS 연계 검토</li></ul></div>
+        <div><b>Biz · 상용화 설계</b><ul>
+          <li>기술이전 대상 업체 요구·현장 수요 설계 반영</li>
+          <li>연구성과 실용화 기반 확보</li></ul></div>
+      </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="block">
+      <h3>과제 <em>개요</em></h3>
+      <div class="meta">
+        <div><span>사업명</span><b>한국에너지기술연구원 기본사업</b></div>
+        <div><span>연구개발기간</span><b>2023.01.01 – 2026.12.31</b></div>
+        <div><span>연구책임자</span><b>김종훈 책임연구원</b></div>
+        <div><span>연구실무자</span><b>한광우 선임연구원</b></div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="f">
+        <span><b>Building Cognition Lab (BCL)</b> · 한국에너지기술연구원(KIER) · 김종훈 책임연구원</span>
+        <span>© KIM Jonghun. All rights reserved.</span>
+      </div>
+    </footer>
+  </div>
+</section>
+
+<script>
+const PANELS = [{"c": "c1", "no": "01", "img": "images/tech01.webp", "t2": "부하분리", "t1": "기술", "en": "NILM", "name": "부하분리 기술", "lead": "분전반 메인 채널의 합산 전력 시계열로부터 서브 채널별 부하를 역추정한다. 20개 분전반·282개 서브채널을 에너지용도 6종별 연합학습 서버로 나누어 학습했고, 테스트 구간 가중평균 오차율 13.0%(nMAE)를 기록했다.", "st": [{"t": "연합학습 기반 학습 구조 설계", "items": [["서버는 가중치만 집계·배포 — 분전반 데이터는 외부로 나가지 않음", "연합학습"], ["클라이언트 = 분전반(건물코드 + 통신IP + 분전반ID)", "59 Set"], ["조명·냉난방·전열·환기·급탕·실험실 6종별 서버 분리", "6 서버"], ["KIER 행정동·복합동 20 set, 1분 단위 1년치(’24.03~’25.02)", "데이터"], ["계절 교차분할 학습 70% : 검증 15% : 테스트 15%", "분할"]]}, {"t": "백본 모델과 손실함수", "items": [["1-D CNN 5층 백본 (kernel 5, ch 32, stride 1, padding 2)", "Conv1D"], ["Lazy FC 초기화 + Softplus−log(2) 출력 (비음수·제로중심화)", "출력단"], ["Masked TW-MSE 손실 — 전이임계 δ=25W, 전이 가중계수 κ=4", "손실함수"], ["집계 알고리즘 비교(FedAvg·FedOpt·Ditto) 후 Ditto 채택, λ=0.2", "Ditto"], ["모델 1개 14.2M · 전체 약 924M (서버 85.2M + 클라이언트 837M)", "규모"]]}, {"t": "부하분리 성능평가", "items": [["전체 가중평균 nMAE 13.0% · MAE 140.0W", "13.0%"], ["행정동 13.6% · 복합동 11.7% — 평균부하 크기와 오차율 간 상관 없음", "일반화"], ["최대 33채널 다채널 분전반도 12.1% 수준으로 분리", "33채널"], ["용도별: 전열 11.3% · 조명 13.2% · 냉난방 13.3% · 실험실 15.3%", "용도별"], ["클라이언트가 적은 환기(16.7%)·급탕(36.1%)은 참여 확대 시 개선 전망", "과제"]]}]}, {"c": "c2", "no": "02", "img": "images/tech02.webp", "t2": "미래상태", "t1": "예측", "en": "FORECAST", "name": "미래상태 예측", "lead": "분전반마다 채널 수가 달라 입력 차원이 어긋나는 문제를, 학습 가능한 query로 이질적 입력을 공통 차원으로 압축하는 QAP 모듈로 풀었다. 스파이크 기반 iSpikeformer를 백본으로 삼아 정확도 87.57%와 저전력 추론을 함께 얻었다.", "st": [{"t": "QAP 기반 연합학습 프레임워크", "items": [["FedPer 확장 — 공통 표현 레이어와 개인화 예측 헤드를 분리", "FedPer"], ["Value projection: 서브부하 유효전력을 선형 임베딩으로 차원 통일", "QAP ①"], ["Feature embedding: 서브부하 인덱스를 학습 가능한 벡터로 변환", "QAP ②"], ["Cross attention: 학습 query로 서브부하 정보를 통일 표현으로 압축", "QAP ③"], ["Global context(mean·max) + 시간특성(월·일·시) 결합", "QAP ④⑤"]]}, {"t": "스파이크 기반 백본", "items": [["iSpikeformer 백본 — event 기반 저전력 시계열 특징 추출", "SNN"], ["personal head에서 분전반별 채널 수로 복원, multi-step 예측", "다채널"], ["입력 96 step → 출력 48 step, 15분 리샘플, MSE 손실", "설정"], ["융합동·복합동 23개 분전반, ’24.03~’25.02 1분 단위 데이터", "23 Set"]]}, {"t": "예측 정확도와 추론 에너지", "items": [["가중평균 예측정확도 87.57% — 3차년도 목표 85% 달성", "87.6%"], ["ANN 기반 iTransformer 87.49% 대비 동등 이상", "비교"], ["파라미터 0.1085M vs 0.1063M — 두 모델 규모는 유사", "경량"], ["1회 추론 에너지 약 54% 절감 (조명 용도 5채널 케이스 스터디)", "−54%"], ["출력 헤드까지 스파이크화 시 약 90% 추가 절감 기대", "4차년도"]]}]}, {"c": "c3", "no": "03", "img": "images/tech03.webp", "t2": "중요도", "t1": "판단", "en": "SCORING", "name": "중요도 판단", "lead": "서브부하의 전력 시계열만으로 기저부하·중앙 냉난방·재실 패턴을 가려내 ‘꺼도 되는 스위치’를 정한다. HMM 스케줄 추정과 코사인 유사도를 3단계 제어로직으로 엮었다.", "st": [{"t": "3단계 제어로직", "items": [["1단계 — 기저부하로 분류된 서브부하는 스위치 유지", "기저부하"], ["2단계 — 냉난방 스케줄과의 유사도로 중앙 냉난방 부하 판별", "냉난방"], ["3단계 — 재실 스케줄 유사도로 낭비 부하 판별", "재실"], ["가동시간 10분 이상이면 중요 부하로 보는 보조 판단 추가", "보조로직"]]}, {"t": "HMM 스케줄 추정", "items": [["은닉상태 2개(ON/OFF), covariance_type=diag, n_iter=100", "HMM"], ["초기상태확률·상태전이확률·상태별 평균/공분산을 학습", "파라미터"], ["예측오차율 — 냉난방 6.1%, 재실 1.7%", "성능"]]}, {"t": "유사도 판정과 실증", "items": [["10W 미만 컷오프 후 1시간 단위 이진화(상위 20% 기준)", "전처리"], ["코사인 유사도 0.6 이상이면 중요 부하로 판별", "기준"], ["KIER 대전 본원 실데이터로 제어로직 작동 확인", "실증"], ["기저부하·중앙 냉난방은 유지, 전열·전동스크린은 스케줄 기반 제어", "결과"]]}]}, {"c": "c4", "no": "04", "img": "images/tech04.webp", "t2": "뉴로패널", "t1": "프로토타입", "en": "PROTOTYPE", "name": "뉴로패널 프로토타입", "lead": "알고리즘을 눈으로 보여주는 실물. 분전반 형태 케이싱에 32인치 터치 패널과 Jetson Orin Nano를 넣어, 부하분리 결과부터 ‘끌 스위치’ 권고까지 이어지는 흐름을 시연한다.", "st": [{"t": "프로토타입 HW", "items": [["철제 분전반 케이싱 + 32인치 터치 모니터 + 엣지 AI 보드 구성", "구성"], ["NVIDIA Jetson Orin Nano — 67 TOPS, 1024코어 GPU, 8GB LPDDR5, 7–25W", "엣지 보드"], ["측면 전원부와 냉각팬 3개, 이동용 손잡이·바퀴", "제작"], ["전면 도어 개방 시 분전반 모사 이미지와 기능 화면 노출", "형태"]]}, {"t": "프로토타입 SW", "items": [["백엔드 — Python 3.11 · FastAPI · Uvicorn · Pydantic · PyInstaller", "백엔드"], ["프론트엔드 — Android(Java, SDK API 33) 기반 7개 페이지", "프론트"], ["안드로이드 PC ↔ 엣지 AI 보드 이더넷 연결, API 방식 송수신", "연동"]]}, {"t": "시연 시나리오", "items": [["실제 분전반 6개소 데이터 탑재 (행정동 LN-1A·1B·2B, 복합동 MCC-PH·LN-02·LN-04)", "6개소"], ["부하분리 결과 → 끌 스위치 권고 → 메인 전력 감소 애니메이션", "흐름"], ["실시간 데이터 수집·연동은 4차년도 과제", "계획"]]}]}, {"c": "c5", "no": "05", "img": "images/tech05.webp", "t2": "뉴로모픽", "t1": "소자", "en": "Ag NWN", "name": "뉴로모픽 소자", "lead": "실버 나노와이어 네트워크(Ag NWN)를 웨이퍼 스케일로 균일하게 만드는 공정을 세웠다. 자체 개발한 Slow-spin coating으로 pinning을 억제해 균일도 5.91%, 구동전압 1V, 17.1 pJ/spike를 확보했다.", "st": [{"t": "웨이퍼 스케일 전극 패터닝", "items": [["4인치 산화실리콘 웨이퍼에 6×6mm 패드를 다수 동시 제작", "설계"], ["크롬 마스크 제작 후 포토리소그래피로 미세 전극 패턴 전사", "공정"], ["PVD로 Cr/Au (5/50nm) 전극 증착", "증착"]]}, {"t": "Slow-spin coating 공정 개발", "items": [["DI water : 에탄올 1:1 혼합용매로 증발속도·점도 조절", "용액"], ["PVP 3wt% 첨가로 hysteresis 특성 조절", "첨가제"], ["5 µL 토출 후 500rpm 저속 회전 + heat gun 가열", "조건"], ["마랑고니 대류로 지속 믹싱, 가장자리 pinning 효과 억제", "원리"]]}, {"t": "소자 특성 평가", "items": [["SEM 기반 형태학적 분석으로 inter-connection 목표 달성", "~10⁷"], ["균일도 5.91% — 당해연도 목표(<10%) 달성", "5.91%"], ["DC voltage sweep 구동전압 1V까지 감소 — 4차년도 목표 조기 달성", "1 V"], ["5V·0.5ms 펄스 구동 에너지 17.1 pJ/spike — 4차년도 목표 조기 달성", "17.1 pJ"]]}]}];
+
+const count = p => p.st.reduce((a,s)=>a+s.items.length,0);
+const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+const deck = document.getElementById("deck");
+const stage = document.getElementById("stage");
+
+deck.innerHTML = PANELS.map((p,i)=>`
+  <article class="card ${p.c}" data-i="${i}">
+    <div class="card-flip">
+      <div class="card-front">
+        ${p.img ? `<div class="card-img"><img src="${p.img}" alt=""></div>` : ""}
+        <span class="card-value">핵심기술 ${p.no}</span>
+        <span class="arrow">↗</span>
+        <div class="card-info">
+          <p class="card-info-title"><span>${esc(p.t2)}</span> ${esc(p.t1)}</p>
+        </div>
+      </div>
+      <div class="card-back">
+        <span class="card-value">핵심기술 ${p.no}</span>
+        <p class="card-title"><span>${esc(p.t2)}</span> ${esc(p.t1)}</p>
+        <ul class="card-list">
+          ${p.st.map((st,j)=>`<li><button type="button" data-p="${i}" data-s="${j}"><span>단계 ${j+1}</span>${esc(st.t)}</button></li>`).join("")}
+        </ul>
+        <p class="hint">항목을 클릭하면 상세 내용으로 이동합니다</p>
+      </div>
+    </div>
+  </article>`).join("");
+
+const cards=[...deck.querySelectorAll(".card")];
+const FINAL_Z=[1,3,5,2,4];
+const INIT_ROT=[0,-10,-20,-30,-40], INIT_Z=[5,4,3,2,1];
+function getMaxDist(w){
+  const cardW=450, f=1.2;
+  if(w<=1440) return ((w-cardW)/2)*f;
+  if(w<=1920) return Math.min(((w-cardW)/2)*f, 800);
+  return Math.min(((w-cardW)/2)*f, 900);
+}
+function finalPos(maxD){
+  return [
+    {x:-maxD*0.9, y:80, r:-8},
+    {x:-maxD*0.45,y:40, r: 3},
+    {x: 0,        y: 0, r: 0},
+    {x: maxD*0.45,y:40, r: 6},
+    {x: maxD*0.9, y:80, r:-3}
+  ];
+}
+let spread=false;
+let active=0;                       /* 스택 모드에서 맨 앞에 오는 카드 */
+const prevBtn=document.getElementById('prev'), nextBtn=document.getElementById('next'),
+      deckNav=document.getElementById('decknav');
+const FAN_W=1300;                   /* 이 폭 미만이면 원본처럼 스택 캐러셀 */
+function krNow(vw){
+  if(vw>1920) return 10;
+  if(vw>1680) return 9;
+  if(vw>1480) return 8;
+  if(vw>=FAN_W) return 7;
+  const cw=Math.min(340, Math.max(224, vw-96));   /* 스택 모드: 카드 폭을 화면에 맞춤 */
+  return cw/45;
+}
+function metrics(){
+  const vw=Math.max(320,document.documentElement.clientWidth);
+  const kr=krNow(vw);
+  document.documentElement.style.setProperty('--kr', kr.toFixed(3)+'px');
+  if(vw<FAN_W) return {stack:true, kr, ty0:0, sh:71.9*kr+30, maxD:0};
+  return {stack:false, kr, ty0:4.05*kr, sh:80*kr+80, maxD:getMaxDist(vw)};
+}
+function apply(m,x,y,r,sc){
+  return `translate(${x.toFixed(1)}px,${(m.ty0+y).toFixed(1)}px) rotate(${r}deg)`
+       + (sc && sc!==1 ? ` scale(${sc.toFixed(3)})` : '');
+}
+function place(){
+  const m=metrics();
+  stage.style.setProperty("--sh", m.sh.toFixed(1)+"px");
+  deckNav.style.display = m.stack ? 'flex' : 'none';
+
+  if(m.stack){        /* 스택 캐러셀 — 원본 Swiper cards 효과 수치
+                         offset = (8 - 0.75·|o|)% × 카드폭  (멀수록 간격이 좁아짐)
+                         scale  = 1200 / (1200 + 100·|o|)   (원본의 translateZ 원근 축소) */
+    const cw=45*m.kr;
+    cards.forEach((c,i)=>{
+      const o=i-active, a=Math.abs(o);
+      const dx=Math.sign(o)*(8-0.75*a)*a/100*cw;
+      const sc=1200/(1200+100*a);
+      c.style.pointerEvents='auto';
+      c.style.opacity='1';
+      c.style.zIndex=String(20-a);
+      c.style.transform=apply(m, dx, 0, o*2, sc);
+    });
+    prevBtn.disabled=(active===0);
+    nextBtn.disabled=(active===cards.length-1);
+    return;
+  }
+
+  cards.forEach(c=>{c.style.opacity='1';c.style.pointerEvents='auto';});
+  const pos=finalPos(m.maxD);
+  cards.forEach((c,i)=>{
+    if(spread){ c.style.zIndex=FINAL_Z[i]; c.style.transform=apply(m,pos[i].x,pos[i].y,pos[i].r); }
+    else      { c.style.zIndex=INIT_Z[i]; c.style.transform=apply(m,0,0,0); }
+  });
+}
+function go(i){
+  active=Math.max(0,Math.min(cards.length-1,i));
+  cards.forEach(c=>c.classList.remove('flip'));
+  place();
+}
+prevBtn.addEventListener('click',()=>go(active-1));
+nextBtn.addEventListener('click',()=>go(active+1));
+place();
+window.addEventListener("resize",place);
+
+/* 원본과 동일한 등장 연출: 스택 → 회전 → 펼침 (넓은 화면에서만) */
+function intro(){
+  if(metrics().stack){ spread=true; place(); return; }
+  const m0=metrics();
+  cards.forEach((c,i)=>setTimeout(()=>{
+    c.style.transform=apply(m0,0,0,INIT_ROT[i]);
+  }, i*150));
+  setTimeout(()=>{
+    const m=metrics(); if(m.stack){ spread=true; place(); return; }
+    const pos=finalPos(m.maxD);
+    cards.forEach((c,i)=>c.style.zIndex=FINAL_Z[i]);
+    [[2,0],[1,200],[3,200],[0,400],[4,400]].forEach(([i,d])=>setTimeout(()=>{
+      cards[i].style.transform=apply(m,pos[i].x,pos[i].y,pos[i].r);
+    },d));
+    setTimeout(()=>{spread=true;place();},1000);
+  }, 5*150+600);
+}
+let played=false;
+new IntersectionObserver((es,ob)=>{
+  es.forEach(e=>{ if(e.isIntersecting && !played){ played=true; intro(); ob.disconnect(); } });
+},{threshold:.25}).observe(stage);
+
+deck.addEventListener("click",e=>{
+  const btn=e.target.closest(".card-list button");
+  if(btn){e.stopPropagation();openStrategy(+btn.dataset.p,+btn.dataset.s);return;}
+  const card=e.target.closest(".card"); if(!card) return;
+  const i=+card.dataset.i, st=metrics().stack;
+  if(st && i!==active){ go(i); return; }
+  if(st || window.matchMedia("(hover: none)").matches){
+    cards.forEach(c=>{ if(c!==card) c.classList.remove("flip"); });
+    card.classList.toggle("flip");
+  }
+});
+
+/* 좌우 스와이프 */
+let _sx=null;
+deck.addEventListener('touchstart',e=>{ _sx=e.touches[0].clientX; },{passive:true});
+deck.addEventListener('touchend',e=>{
+  if(_sx===null) return;
+  const dx=e.changedTouches[0].clientX-_sx; _sx=null;
+  if(metrics().stack && Math.abs(dx)>40) go(active+(dx<0?1:-1));
+},{passive:true});
+
+document.getElementById("accs").innerHTML = PANELS.map((p,i)=>`
+  <section class="acc ${p.c}" id="panel-${i}">
+    <button class="acc-h" data-p="${i}">
+      <span class="no">${p.no}</span>
+      <span class="tt"><b>${esc(p.name)}</b><span>${esc(p.en)}</span></span>
+      <span class="cnt">${count(p)}개</span>
+      <span class="chev">▾</span>
+    </button>
+    <div class="acc-b">
+      <p class="lead">${esc(p.lead)}</p>
+      ${p.st.map((s,j)=>`
+        <div class="strat" id="s-${i}-${j}">
+          <button class="strat-h" data-p="${i}" data-s="${j}">
+            <span class="b">단계 ${j+1}</span><span class="t">${esc(s.t)}</span><span class="a">›</span>
+          </button>
+          <div class="strat-b">
+            <ol>${s.items.map(it=>`<li><span>${esc(it[0])}<span class="tag">${esc(it[1])}</span></span></li>`).join("")}</ol>
+          </div>
+        </div>`).join("")}
+    </div>
+  </section>`).join("");
+
+document.getElementById("accs").addEventListener("click",e=>{
+  const ah=e.target.closest(".acc-h"); if(ah){ah.parentElement.classList.toggle("open");return;}
+  const sh=e.target.closest(".strat-h"); if(sh){sh.parentElement.classList.toggle("open");}
+});
+function openStrategy(pi,si){
+  document.getElementById("panel-"+pi).classList.add("open");
+  const st=document.getElementById(`s-${pi}-${si}`); st.classList.add("open");
+  setTimeout(()=>window.scrollTo({top:st.getBoundingClientRect().top+window.scrollY-86,behavior:"smooth"}),60);
+}
+</script>
+<script>
+/* 헤더 아랫줄의 자간을 조절해 윗줄(제목) 폭과 같아지도록 맞춤 */
+(function(){
+  function fit(){
+    var b=document.querySelector('.brand .txt b'),
+        s=document.querySelector('.brand .txt span');
+    if(!b||!s) return;
+    var n=s.textContent.length; if(!n) return;
+    s.style.letterSpacing='0px'; s.style.fontSize='';
+    var base=parseFloat(getComputedStyle(s).fontSize);
+    var nat=s.getBoundingClientRect().width, tw=b.getBoundingClientRect().width;
+    if(nat>tw && tw>0){                       /* 자간만으로 줄이면 너무 빽빽해져 크기도 15%까지 함께 줄임 */
+      s.style.fontSize=Math.max(base*0.85, base*tw/nat).toFixed(2)+'px';
+    }
+    var ls=0;
+    for(var i=0;i<8;i++){
+      var t=b.getBoundingClientRect().width, c=s.getBoundingClientRect().width;
+      if(!t) return;
+      if(Math.abs(t-c)<0.2) break;
+      ls += (t-c)/n;
+      s.style.letterSpacing=ls.toFixed(3)+'px';
+    }
+  }
+  if(document.fonts && document.fonts.ready){ document.fonts.ready.then(fit); }
+  window.addEventListener('load',fit);
+  window.addEventListener('resize',fit);
+})();
+</script>
+<script>
+/* 리포트 섹션 펼침/접힘 */
+document.querySelectorAll('.rep-h').forEach(function(h){
+  h.addEventListener('click',function(){
+    var r=h.parentElement, open=r.classList.toggle('open');
+    h.setAttribute('aria-expanded', open?'true':'false');
+  });
+});
+</script>
+<button class="totop" type="button" aria-label="맨 위로">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+       stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M12 19V5M5 12l7-7 7 7"/>
+  </svg><span>맨 위로</span>
+</button>
+
+<script>
+/* QR 박스를 상단 CTA 버튼과 같은 폭으로 */
+(function(){
+  var cta=document.querySelector('.top-cta'), qr=document.querySelector('.hdr-qr');
+  if(!cta||!qr) return;
+  function sync(){
+    document.documentElement.style.setProperty('--ctaw', cta.offsetWidth+'px');
+  }
+  sync();
+  window.addEventListener('resize',sync);
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(sync);
+})();
+</script>
+
+<script>
+/* 맨 위로 버튼 */
+(function(){
+  var btn=document.querySelector('.totop'); if(!btn) return;
+  var ticking=false;
+  function upd(){
+    btn.classList.toggle('on', window.scrollY > window.innerHeight*0.6);
+    ticking=false;
+  }
+  window.addEventListener('scroll',function(){
+    if(!ticking){ ticking=true; requestAnimationFrame(upd); }
+  },{passive:true});
+  upd();
+  btn.addEventListener('click',function(){
+    /* 맨 위로 갈 때는 펼쳐둔 핵심기술 아코디언을 모두 접는다 */
+    document.querySelectorAll('#accs .acc.open, #accs .strat.open')
+            .forEach(function(el){ el.classList.remove('open'); });
+    var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({top:0, behavior: reduce ? 'auto' : 'smooth'});
+  });
+})();
+</script>
+</body>
+</html>
