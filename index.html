@@ -104,6 +104,13 @@ header.solid ~ .hdr-qr{background:rgba(255,255,255,.9);border-color:var(--lline)
 .btn-primary:hover{background:var(--acc2);border-color:var(--acc2)}
 .btn svg{width:14px;height:14px;transition:transform .25s}
 .btn-primary:hover svg{transform:translateY(3px)}
+/* 히어로 소리 토글 — main 사이트와 동일한 형태(CTA 옆 52px 정사각) */
+.hero-sound{flex:0 0 auto;width:52px;height:52px;display:grid;place-items:center;border-radius:0;
+  background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.30);color:#fff;cursor:pointer;
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transition:background .2s,border-color .2s}
+.hero-sound:hover{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.6)}
+.hero-sound svg{width:18px;height:18px;display:block}
+.hero-sound.on{border-color:var(--pink)}
 /* 스크롤 마크 — 뉴로패널 페이지와 동일한 크기·형태 (색만 다크용) */
 .scroll-mark{position:absolute;left:50%;bottom:26px;z-index:3;transform:translateX(-50%);
   display:flex;flex-direction:column;justify-content:center;align-items:center;gap:12px}
@@ -240,6 +247,7 @@ footer .cr{margin-top:26px;padding-top:24px;border-top:1px solid var(--line);col
         기술 목록 보기
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
       </a>
+      <button class="hero-sound" id="heroSound" type="button" aria-label="소리 켜기" aria-pressed="false" title="소리"></button>
     </div>
   </div>
 
@@ -419,6 +427,23 @@ footer .cr{margin-top:26px;padding-top:24px;border-top:1px solid var(--line);col
   new IntersectionObserver(function(es){
     es.forEach(function(e){ e.isIntersecting ? v.play().catch(function(){}) : v.pause(); });
   },{threshold:.05}).observe(v);
+})();
+
+(function(){
+  /* 소리 토글 — 자동재생은 음소거 상태로만 허용되므로, 켜는 건 사용자 클릭으로 */
+  var v=document.getElementById('heroVid'), btn=document.getElementById('heroSound');
+  if(!v||!btn) return;
+  var mutedIcon='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>';
+  var soundIcon='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a9 9 0 0 1 0 14"/></svg>';
+  btn.innerHTML=mutedIcon;
+  btn.addEventListener('click',function(){
+    v.muted=!v.muted;
+    if(!v.muted){ v.play().catch(function(){}); }
+    btn.innerHTML=v.muted?mutedIcon:soundIcon;
+    btn.classList.toggle('on',!v.muted);
+    btn.setAttribute('aria-pressed', v.muted?'false':'true');
+    btn.setAttribute('aria-label', v.muted?'소리 켜기':'소리 끄기');
+  });
 })();
 
 (function(){
