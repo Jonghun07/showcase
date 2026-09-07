@@ -71,8 +71,6 @@ header.top{position:fixed;inset:0 0 auto 0;z-index:60;
   padding:5px 15px;font-size:12px;line-height:1.6;font-weight:600;color:#fff;white-space:nowrap;
   background:linear-gradient(90deg,#5E5A9F 0%,#CA5D35 100%);transition:.2s}
 .top-cta:hover{filter:brightness(1.08)}
-.top-cta i{width:5px;height:5px;border-radius:50%;background:#fff;display:block;animation:blink 1.8s infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
 
 /* hero */
 .hero{display:grid;place-items:center;text-align:center;position:relative;padding:34px 0 20px}
@@ -248,7 +246,7 @@ header.top{position:fixed;inset:0 0 auto 0;z-index:60;
   .duo article{padding:22px 20px 18px}
   .callout{padding:16px 18px}
 }
-@media (max-width:430px){ .top-cta{display:none} }
+@media (max-width:340px){ .top-cta{display:none} }   /* 쇼케이스 복귀 링크라 최대한 유지 — 360px 까지 안 넘침 */
 
 /* detail */
 .detail{padding:40px 0 90px}
@@ -310,15 +308,13 @@ footer{margin-top:clamp(78px,9vw,112px);background:#000;color:#8a8d99;
   padding:46px 0 58px;font-size:12.5px;letter-spacing:-.01em;
   font-family:var(--sans)}
 footer .wrap{max-width:1180px}
-footer .f-top{display:flex;flex-wrap:wrap;gap:20px 30px;align-items:flex-start;justify-content:space-between}
+footer .f-top{display:flex;flex-wrap:wrap;gap:20px 30px;align-items:flex-start}
 footer .f-brand{display:flex;align-items:center;gap:11px;margin-bottom:9px;
-  color:#fff;font-weight:600;font-size:17px;letter-spacing:-.015em}
+  color:#fff;font-weight:600;font-size:17px;letter-spacing:-.015em;transition:opacity .2s}
+footer a.f-brand:hover{opacity:.72}
 footer .f-logo{width:32px;height:32px;flex:none;display:block;overflow:hidden}
 footer .f-logo svg{width:100%;height:100%;display:block}
 footer .f-tag{color:#8a8d99}
-footer .f-links{display:flex;gap:24px;color:#8a8d99;font-weight:600}
-footer .f-links a{transition:color .2s}
-footer .f-links a:hover{color:#fff}
 footer .f-cr{margin-top:26px;padding-top:24px;border-top:1px solid rgba(255,255,255,.08);color:#6f7480}
 
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
@@ -584,9 +580,9 @@ footer .f-cr{margin-top:26px;padding-top:24px;border-top:1px solid rgba(255,255,
 164 -4 221 -57 309 -74 122 -195 211 -323 235 -61 12 -620 16 -3537 23 l-3465
 9 -82 28 c-70 24 -93 38 -147 89 -79 74 -141 187 -150 268 -22 209 -28 253
 -39 275 -11 21 -15 22 -25 10z"/></g></svg></div>
-      <div class="txt"><b>Autonomous EMS 뉴로모픽</b><span>한국에너지기술연구원 · 3차년도 성과 요약 · 김종훈</span></div>
+      <div class="txt"><b>Autonomous EMS 뉴로모픽</b></div>
     </div>
-    <a class="top-cta" href="#tech"><i></i>수행 내용 보기</a>
+    <a class="top-cta" href="../index.html">Showcase<span aria-hidden="true">&rarr;</span></a>
   </div>
 </header>
 <a class="hdr-qr" href="https://jonghun07.github.io/showcase/neuropanel/" aria-label="이 페이지 주소 QR 코드">
@@ -596,7 +592,7 @@ footer .f-cr{margin-top:26px;padding-top:24px;border-top:1px solid rgba(255,255,
 <section class="sect" id="parts">
   <div class="wrap">
     <div class="sect-h">
-      <h2><em>5대</em> 핵심기술</h2>
+      <h2><em>5대</em> 추진 과업</h2>
     </div>
     <div class="deck-area">
       <div class="deck-stage" id="stage"><div class="deck" id="deck"></div></div>
@@ -725,7 +721,7 @@ footer .f-cr{margin-top:26px;padding-top:24px;border-top:1px solid rgba(255,255,
     <div style="height:96px"></div>
 
     <div class="sect-h" id="tech" style="margin-bottom:36px">
-      <h2>핵심기술별 <em>수행 내용</em></h2>
+      <h2>과업별 <em>수행 내용</em></h2>
     </div>
     <div id="accs"></div>
 
@@ -741,7 +737,7 @@ footer .f-cr{margin-top:26px;padding-top:24px;border-top:1px solid rgba(255,255,
         </button>
         <div class="rep-b">
       <div class="tbl-wrap"><table class="tbl">
-        <thead><tr><th>핵심기술</th><th>목표지표</th><th>단위</th><th class="num">3차년도 목표</th><th class="num">달성값</th><th class="num">달성도</th></tr></thead>
+        <thead><tr><th>추진 과업</th><th>목표지표</th><th>단위</th><th class="num">3차년도 목표</th><th class="num">달성값</th><th class="num">달성도</th></tr></thead>
         <tbody>
 <tr><td>SNN 기반 EMS 운영 알고리즘</td><td>예측에러율</td><td>%</td><td class="num">&lt;2</td><td class="num">달성</td><td class="num ok">100%</td></tr>
 <tr><td>A-EMS 운영 기술</td><td>예측정확도(SNN)</td><td>%</td><td class="num">85</td><td class="num">87.57</td><td class="num ok">100%</td></tr>
@@ -900,17 +896,11 @@ footer .f-cr{margin-top:26px;padding-top:24px;border-top:1px solid rgba(255,255,
   <div class="wrap">
     <div class="f-top">
       <div>
-        <div class="f-brand">
+        <a class="f-brand" href="https://jonghun07.github.io/bcl/">
           <span class="f-logo"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><linearGradient id="lgF" x1="0" y1="0" x2="1.5" y2="1.5" spreadMethod="repeat" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#6366f1"/><stop offset="0.5" stop-color="#22d3ee"/><stop offset="1" stop-color="#6366f1"/><animateTransform attributeName="gradientTransform" type="translate" from="0 0" to="1.5 1.5" dur="4s" repeatCount="indefinite"/></linearGradient></defs><rect width="24" height="24" fill="url(#lgF)"/><g transform="translate(1.2,1.2) scale(0.9)" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="3.2"/><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="18" r="2"/><path d="M9.3 10.4 6.4 7.3M14.7 10.4l2.9-3.1M9.3 13.6l-2.9 3.1M14.7 13.6l2.9 3.1"/></g></svg></span>
           Building Cognition Lab
-        </div>
+        </a>
         <div class="f-tag">Empowering Buildings to Perceive, Reason, and Act · KIER · UST, DAEJEON, Republic of Korea</div>
-      </div>
-      <div class="f-links">
-        <a href="https://jonghun07.github.io/bcl/">Main Site</a>
-        <a href="https://jonghun07.github.io/bcl/#research">Research</a>
-        <a href="https://jonghun07.github.io/bcl/#publications">Publications</a>
-        <a href="../index.html">Showcase</a>
       </div>
     </div>
     <div class="f-cr">© 2012 Building Cognition Lab — Jonghun KIM. All rights reserved.</div>
@@ -931,14 +921,14 @@ deck.innerHTML = PANELS.map((p,i)=>`
     <div class="card-flip">
       <div class="card-front">
         ${p.img ? `<div class="card-img"><img src="${p.img}" alt=""></div>` : ""}
-        <span class="card-value">핵심기술 ${p.no}</span>
+        <span class="card-value">추진 과업 ${p.no}</span>
         <span class="arrow">↗</span>
         <div class="card-info">
           <p class="card-info-title"><span>${esc(p.t2)}</span> ${esc(p.t1)}</p>
         </div>
       </div>
       <div class="card-back">
-        <span class="card-value">핵심기술 ${p.no}</span>
+        <span class="card-value">추진 과업 ${p.no}</span>
         <p class="card-title"><span>${esc(p.t2)}</span> ${esc(p.t1)}</p>
         <ul class="card-list">
           ${p.st.map((st,j)=>`<li><button type="button" data-p="${i}" data-s="${j}"><span>단계 ${j+1}</span>${esc(st.t)}</button></li>`).join("")}
@@ -1106,32 +1096,6 @@ function openStrategy(pi,si){
 }
 </script>
 <script>
-/* 헤더 아랫줄의 자간을 조절해 윗줄(제목) 폭과 같아지도록 맞춤 */
-(function(){
-  function fit(){
-    var b=document.querySelector('.brand .txt b'),
-        s=document.querySelector('.brand .txt span');
-    if(!b||!s) return;
-    var n=s.textContent.length; if(!n) return;
-    s.style.letterSpacing='0px'; s.style.fontSize='';
-    var base=parseFloat(getComputedStyle(s).fontSize);
-    var nat=s.getBoundingClientRect().width, tw=b.getBoundingClientRect().width;
-    if(nat>tw && tw>0){                       /* 자간만으로 줄이면 너무 빽빽해져 크기도 15%까지 함께 줄임 */
-      s.style.fontSize=Math.max(base*0.85, base*tw/nat).toFixed(2)+'px';
-    }
-    var ls=0;
-    for(var i=0;i<8;i++){
-      var t=b.getBoundingClientRect().width, c=s.getBoundingClientRect().width;
-      if(!t) return;
-      if(Math.abs(t-c)<0.2) break;
-      ls += (t-c)/n;
-      s.style.letterSpacing=ls.toFixed(3)+'px';
-    }
-  }
-  if(document.fonts && document.fonts.ready){ document.fonts.ready.then(fit); }
-  window.addEventListener('load',fit);
-  window.addEventListener('resize',fit);
-})();
 </script>
 <script>
 /* 리포트 섹션 펼침/접힘 */
@@ -1177,7 +1141,7 @@ document.querySelectorAll('.rep-h').forEach(function(h){
   },{passive:true});
   upd();
   btn.addEventListener('click',function(){
-    /* 맨 위로 갈 때는 펼쳐둔 핵심기술 아코디언을 모두 접는다 */
+    /* 맨 위로 갈 때는 펼쳐둔 과업 아코디언을 모두 접는다 */
     document.querySelectorAll('#accs .acc.open, #accs .strat.open')
             .forEach(function(el){ el.classList.remove('open'); });
     var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
